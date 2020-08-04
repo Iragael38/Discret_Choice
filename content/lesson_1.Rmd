@@ -10,6 +10,6 @@ authorbox: false
 
 This is the 1rst Lesson **Discrete Choice Modelling** 
 
-
+[PDF](/Slides/010_Introduction_E3_v2.pdf)
 
 

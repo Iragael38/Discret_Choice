@@ -1,6 +1,6 @@
 ---
 title: "Discret Choice Modelling"
-subtitle: "First Lesson"
+subtitle: "Other Lessons list"
 author: "Iragaël Joly"
 date: "Automn 2020"
 categories: ["R"]
@@ -8,7 +8,6 @@ tags: ["R Markdown", "plot", "regression"]
 authorbox: false
 ---
 
+Here are links to other lessons I have push online
 
-
-<p>This is the 1rst Lesson <strong>Discrete Choice Modelling</strong></p>
-<p><a href="/Slides/010_Introduction_E3_v2.pdf">PDF</a></p>
+[Basic Economics for IEM](/https://sie-basic-eco.netlify.app/)

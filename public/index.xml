@@ -26,7 +26,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/lesson_1/</guid>
-      <description>This is the 1rst Lesson Discrete Choice Modelling</description>
+      <description>This is the 1rst Lesson Discrete Choice Modelling
+PDF</description>
     </item>
     
     <item>
@@ -40,6 +41,16 @@ First Lesson</description>
     </item>
     
     <item>
+      <title>Discret Choice Modelling</title>
+      <link>/otherlessons/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/otherlessons/</guid>
+      <description>Here are links to other lessons I have push online
+Basic Economics for IEM</description>
+    </item>
+    
+    <item>
       <title>Introduction to Discret Choice Lesson</title>
       <link>/post/2020-08_introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -49,6 +60,18 @@ First Lesson</description>
 Table of contents
 IntroductionProgramMotivationsImportance of DCMCourse ObjectivesGeneral Context of Choice analysisFour broad frameworksSample and MeasurementIssues in Model BuildingR and Tests for Categorical DataInference for a (Single) ProportionTwo-Way Contingency TablesThe Odds-RatioChi-Squared Tests of IndependenceProgram5 steps/lessons :
 • Introduction• Binary Choice• Multinomial Choices• Advanced Models : papers presentation (with application)• Discussion : papers discussion (reversed class)• Guided work sessions</description>
+    </item>
+    
+    <item>
+      <title>Some tricks</title>
+      <link>/post/sometricks-draft/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sometricks-draft/</guid>
+      <description>In Yalmmenu: mainsidebar: falseauthorbox: falseBlockquoteUse previos line.
+for empty newlines
+you can even blockquote CODE by prefixing with &amp;gt;
+</description>
     </item>
     
   </channel>
