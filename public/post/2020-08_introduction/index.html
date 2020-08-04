@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Introduction to Discret Choice Lesson - Discret Choice Modelling Lesson</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Introduction to Discret Choice Lesson" />
+<meta property="og:description" content="IntroductionThese Introduction slides present:
+Table of contents
+IntroductionProgramMotivationsImportance of DCMCourse ObjectivesGeneral Context of Choice analysisFour broad frameworksSample and MeasurementIssues in Model BuildingR and Tests for Categorical DataInference for a (Single) ProportionTwo-Way Contingency TablesThe Odds-RatioChi-Squared Tests of IndependenceProgram5 steps/lessons :
+• Introduction• Binary Choice• Multinomial Choices• Advanced Models : papers presentation (with application)• Discussion : papers discussion (reversed class)• Guided work sessions" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2020-08_introduction/" />
+
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Discret Choice Modelling Lesson" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Discret Choice Modelling Lesson</div>
+					<div class="logo__tagline">Lesson at Grenoble Inp</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Discret Choice Modelling</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/first_lesson/">
+				
+				<span class="menu__text">First Lesson</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/organisation/">
+				
+				<span class="menu__text">Organisation</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Introduction to Discret Choice Lesson</h1>
+			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/r/" rel="category">R</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>These Introduction slides present:</p>
+<p><em>Table of contents</em></p>
+<ol style="list-style-type: decimal">
+<li>Introduction</li>
+</ol>
+<ul>
+<li>Program</li>
+<li>Motivations</li>
+<li>Importance of DCM</li>
+<li>Course Objectives</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>General Context of Choice analysis</li>
+</ol>
+<ul>
+<li>Four broad frameworks</li>
+<li>Sample and Measurement</li>
+<li>Issues in Model Building</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>R and Tests for Categorical Data</li>
+</ol>
+<ul>
+<li>Inference for a (Single) Proportion</li>
+<li>Two-Way Contingency Tables</li>
+<li>The Odds-Ratio</li>
+<li>Chi-Squared Tests of Independence</li>
+</ul>
+</div>
+<div id="program" class="section level1">
+<h1>Program</h1>
+<p>5 steps/lessons :</p>
+<p>• Introduction
+• Binary Choice
+• Multinomial Choices
+• Advanced Models : papers presentation (with application)
+• Discussion : papers discussion (reversed class)
+• Guided work sessions</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Agresti2013">
+<p>Agresti, A. 2013. <em>Categorical Data Analysis</em>. Wiley.</p>
+</div>
+<div id="ref-Cornillonetal2008">
+<p>Cornillon, P.A., A. Guyader, F. Husson, N. Jégou, J. Josse, M. Kloareg, E. Matzer-Lober, and L. Rouvière. 2008. <em>Statistiques Avec R</em>. PUR.</p>
+</div>
+<div id="ref-Greene2008">
+<p>Greene, W.H. 2008. <em>Econometric Analysis, 6th</em>. Prentice-HallOxford: Clarendon Press.</p>
+</div>
+<div id="ref-Gujarati2003">
+<p>Gujarati, D. 2003. <em>Basic Econometrics</em>. McGraw &amp; Hill.</p>
+</div>
+<div id="ref-HensherGreene2003">
+<p>Hensher, D.A., and W.H. Greene. 2003. “The Mixed Logit Model: The State of Practice.” <em>Transportation</em> 30 (2): 133–76.</p>
+</div>
+<div id="ref-Hensheretal2005">
+<p>Hensher, D.A., J.M. Rose, and W.H. Greene. 2005. <em>Applied Choice Analysis: A Primer</em>. New York: Cambridge University Press.</p>
+</div>
+<div id="ref-HessDaly2014">
+<p>Hess, S., and A. Daly. 2014. <em>Handbook of Choice Modelling</em>. Edward Elgar.</p>
+</div>
+<div id="ref-Louviereetal2000">
+<p>Louviere, Jordan J., David A. Hensher, and Joffre D. Swait. 2000. <em>Stated Choice Methods: Analysis and Application</em>. New York, NY, USA: Cambridge University Press.</p>
+</div>
+<div id="ref-McFadden2014">
+<p>McFadden, D. 2014. “The New Science of Pleasure: Consumer Choice Behavior and the Measurement of Well-Being.” In <em>Handbook of Choice Modelling</em>, edited by S. Hess and A. Daly, 7–48. UK: Edward Elgar.</p>
+</div>
+<div id="ref-McFaddenTrain2000">
+<p>McFadden, D., and K.E. Train. 2000. “Mixed Mnl Models for Discrete Response.” <em>Journal of of Applied Econometrics</em> 64: 207–40.</p>
+</div>
+<div id="ref-Millot2012">
+<p>Millot, G. 2012. <em>Comprendre et Réaliser Les Tests Statistiques à L’aide de R</em>. DeBoeck.</p>
+</div>
+<div id="ref-MunizagaAlvarez2005">
+<p>Munizaga, Marcela, and Ricardo Alvarez-Daziano. 2005. “Testing Mixed Logit and Probit Models by Simulation.” <em>Transportation Research Record: Journal of the Transportation Research Board</em> 1921: 53–62.</p>
+</div>
+</div>
+</div>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/r-markdown/" rel="tag">R Markdown</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/plot/" rel="tag">plot</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/regression/" rel="tag">regression</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2020-08_introduction/">Introduction to Discret Choice Lesson</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/r/">R</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/plot/" title="plot">plot</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/r-markdown/" title="R Markdown">R Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/regression/" title="regression">regression</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Discret Choice Modelling Lesson.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

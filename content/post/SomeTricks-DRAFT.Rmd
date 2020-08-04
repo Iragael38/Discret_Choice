@@ -1,0 +1,25 @@
+---
+author: IJ
+date: "2020-08"
+title: Some tricks
+draft: True
+---
+
+## In Yalm
+
+```
+menu: main
+sidebar: false
+authorbox: false
+```
+
+## Blockquote
+
+
+> Use previos line.\
+>\
+>
+>for empty newlines
+>\
+>`` you can even blockquote CODE by prefixing `` with >
+

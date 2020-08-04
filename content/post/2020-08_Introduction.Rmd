@@ -1,0 +1,56 @@
+---
+title: "Introduction to Discret Choice Lesson"
+author: "Iragaël Joly"
+date: "Automn 2020"
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+authorbox: false
+link-citations: yes
+biblio-style: apalike
+bibliography: [data/biblio_hdr_v2.bib,  data/Liste_Publi3.bib, data/biblio_DCM.bib]
+nocite: |
+   @MunizagaAlvarez2005,@Greene2008, @McFadden2014,
+   @McFaddenTrain2000,@HensherGreene2003,@Hensheretal2005,@Gujarati2003
+   @Agresti2013, @Millot2012,@Cornillonetal2008,  @Louviereetal2000, @HessDaly2014
+   
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+# Introduction
+
+These Introduction slides present:
+
+*Table of contents*
+
+ 1. Introduction
+   - Program
+   - Motivations
+   - Importance of DCM
+   - Course Objectives
+ 2. General Context of Choice analysis
+   - Four broad frameworks
+   - Sample and Measurement
+   - Issues in Model Building
+ 3. R and Tests for Categorical Data
+   - Inference for a (Single) Proportion
+   - Two-Way Contingency Tables
+   - The Odds-Ratio
+   - Chi-Squared Tests of Independence
+
+# Program
+ 
+5 steps/lessons :
+
+• Introduction
+• Binary Choice
+• Multinomial Choices
+• Advanced Models : papers presentation (with application)
+• Discussion : papers discussion (reversed class)
+• Guided work sessions
+
+# References
+
+

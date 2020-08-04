@@ -1,0 +1,13 @@
+---
+title: About Discret Choice Modelling
+date: "2020-08"
+menu: main
+sidebar: false
+authorbox: false
+---
+
+Things to be here:
+
+- 
+
+Thanks for reading!
