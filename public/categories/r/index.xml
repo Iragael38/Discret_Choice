@@ -11,12 +11,22 @@
     
     
     <item>
-      <title>Introduction to Discret Choice Lesson</title>
-      <link>/first_lesson/</link>
+      <title>Discret Choice Modelling</title>
+      <link>/lesson_1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/first_lesson/</guid>
-      <description>This is the website of the Lesson Basic Economics for Industrial Engineering taught at Grenoble INP Industrial Engineering and Management School.</description>
+      <guid>/lesson_1/</guid>
+      <description>This is the 1rst Lesson Discrete Choice Modelling</description>
+    </item>
+    
+    <item>
+      <title>Discret Choice Modelling</title>
+      <link>/lessons/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/lessons/</guid>
+      <description>This is the website of the Lesson Discret Choice Modelling taught at Grenoble INP Industrial Engineering and Management School &amp;amp; UGA.
+First Lesson</description>
     </item>
     
     <item>
