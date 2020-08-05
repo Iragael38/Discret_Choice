@@ -1,5 +1,4 @@
 ---
-title: "Discret Choice Modelling"
 authorbox: false
 link-citations: yes
 biblio-style: apalike

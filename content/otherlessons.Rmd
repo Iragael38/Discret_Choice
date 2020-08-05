@@ -10,4 +10,4 @@ authorbox: false
 
 Here are links to other lessons I have push online
 
-[Basic Economics for IEM](/https://sie-basic-eco.netlify.app/)
+[Basic Economics for IEM](https://sie-basic-eco.netlify.app/)

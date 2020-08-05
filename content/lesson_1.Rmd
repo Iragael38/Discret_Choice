@@ -1,6 +1,6 @@
 ---
 title: "Discret Choice Modelling"
-subtitle: "First Lesson"
+subtitle: "First Lesson: Introduction"
 author: "Iragaël Joly"
 date: "Automn 2020"
 categories: ["R"]
