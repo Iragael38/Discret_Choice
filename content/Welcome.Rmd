@@ -1,16 +1,9 @@
 ---
 authorbox: false
-link-citations: yes
-biblio-style: apalike
-bibliography: [post/data/biblio_hdr_v2.bib, post/data/Liste_Publi3.bib, post/data/biblio_DCM.bib]
-nocite: |
-   @MunizagaAlvarez2005,@Greene2008, @McFadden2014,
-   @McFaddenTrain2000,@HensherGreene2003,@Hensheretal2005,@Gujarati2003
-   @Agresti2013, @Millot2012,@Cornillonetal2008,  @Louviereetal2000, @HessDaly2014
 ---
-
+  
 # Welcome {.tabset}
-
+  
 This is the welcome page
 
 You find here
@@ -33,8 +26,8 @@ Each lesson is described as follows
 | Lesson 2  | 3 hours | Binary logistic Regression   |   **Lesson**: Linear Probability model <br> Logistic regression specification <br> Estimation and inference <br>   **Exercise**: Effect of PSI |
 |  |  |  |  |
 | Lesson 3  | 3 hours | Guided work: Binary Logistic Regression   |   **Exercise**:  Death Penalty ; Binary Women role ; Titanic survival rate |
-|  |  |  |  |
-| Lesson 4  | 3 hours | Project Presentation |  Discussion on the project and the raised difficulties |
+  |  |  |  |  |
+  | Lesson 4  | 3 hours | Project Presentation |  Discussion on the project and the raised difficulties |
 |  |  |  |  |
 | Lesson 5  | 3 hours | Discret Choice Model (RUM)|  **Lesson**: Discret Choice in Microeconomics <br> Probabilistic Discret choice <br>  Binary choice Model <br> Economic Outputs in DCM <br> **Exercise**: Transport mode choice |
 |  |  |  |  |
@@ -43,9 +36,9 @@ Each lesson is described as follows
 | Lesson 7  | 3 hours | Discrete Choice Model Extensions |  **Lesson**: <br> **Exercise**: Ordered Logit on Wallet data ; Nested logit in transport |
 |  |  |  |  |
 | Lesson 8  | 3 hours | Project Defense |  Student defense of their final project |
-
+  
 ## Posts
-
+  
 Posts will be used to manage the contact (prof $\rightarrow$ student), as notification during the semester
 
 ## Caseine 
@@ -72,6 +65,3 @@ Each group of students has to study one research question based on
 
 
 ## References 
-
-
-

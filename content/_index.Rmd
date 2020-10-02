@@ -3,11 +3,11 @@ title: "Discret Choice Modelling"
 authorbox: false
 link-citations: yes
 biblio-style: apalike
-bibliography: [post/data/biblio_hdr_v2.bib, post/data/Liste_Publi3.bib, post/data/biblio_DCM.bib]
+bibliography: [post/data/biblio_hdr_v2.bib, post/data/Liste_Publi3.bib, post/data/biblio_SABD.bib]
 nocite: |
-   @MunizagaAlvarez2005,@Greene2008, @McFadden2014,
+   @Greene2008, @McFadden2014,
    @McFaddenTrain2000,@HensherGreene2003,@Hensheretal2005,@Gujarati2003
-   @Agresti2013, @Millot2012,@Cornillonetal2008,  @Louviereetal2000, @HessDaly2014
+   @Agresti2013, @Millot2012,@Cornillonetal2008,  @Louviereetal2000, @HessDaly2014, @xie2015, @xie2016, @McFaddenTrain2000, @Train2009 
 ---
 
 # Welcome {.tabset}
@@ -53,6 +53,9 @@ Posts will be used to manage the contact (prof $\rightarrow$ student), as notifi
 
 The *Moodle* based platform **Caseine** is used for this lesson to interact and to exchange document and to perform some online test.
 
+You can access [here](https://moodle.caseine.org/course/view.php?id=346)
+
+You can enroll, using the key `Eco3_clé19`
 
 
 ## Evaluation
@@ -67,12 +70,11 @@ The final project is a long project managed during almost a month.
 It is based on real and complex data. 
 
 Each group of students has to study one research question based on 
+
 - a search for specific litterature on this question
 - the proposed data (common to the class)
 - to build their own analysis (drawing hypothesis from the litterature to be tested with the data using DCM)
 
-
-## References 
 
 
 

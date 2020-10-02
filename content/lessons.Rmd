@@ -8,6 +8,15 @@ tags: ["R Markdown", "plot", "regression"]
 authorbox: false
 ---
 
-This is the website of the Lesson **Discret Choice Modelling** taught at Grenoble INP Industrial Engineering and Management School & UGA.
+# Lessons list
 
-[First Lesson](/lesson_1)
+This is the website of the Lesson **Discret Choice Modelling** taught at Grenoble UGA.
+
+## First Lesson - 05/10/2020 - 9:00 - 12:00
+
+Welcome page of [First Lesson](../post/2020-10-05-first-lesson-october-2020)
+
+## Second Lesson - 12/10/2020 - 9:00 - 12:00
+
+Material for the [Second Lesson](../post/second-lesson-october-2020) 
+

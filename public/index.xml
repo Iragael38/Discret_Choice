@@ -6,9 +6,36 @@
     <description>Recent content in Discret Choice Modelling on Discret Choice Modelling Lesson</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Mon, 12 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Second Lesson October 2020</title>
+      <link>/post/2020-10-12-second-lesson-october-2020/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020-10-12-second-lesson-october-2020/</guid>
+      <description>Second LessonWelcome to the second lesson - 12/10/2020 9:00 - 12:00
+Zoom meetingWe will use Zoom.
+You can connect to zoom:
+following this link: (https://grenoble-inp.zoom.us/j/91637254513?pwd=ejB2K0ZYbHZTL0xGNHUyTU5sUDI0UT09)(and, if needed, install the zoom app).
+or you can start the Zoom app with the following informationmeeting ID: 916 3725 4513Password: ECO3Class platformsDepending on the teacher, we will use Caseine
+I (Iragaël Joly) will try to maintain this blog as a plateform to merge all information and connect to the Caseine and Chamilo plateforms.</description>
+    </item>
+    
+    <item>
+      <title>First Lesson October 1rst 2020</title>
+      <link>/post/2020-10-05-first-lesson-october-2020/</link>
+      <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020-10-05-first-lesson-october-2020/</guid>
+      <description>First LessonWelcome to the first lesson - 05/10/2020 9:00 - 12:00
+IntroductionThese Introduction slides present:
+Table of contents
+IntroductionProgramMotivationsImportance of DCMCourse ObjectivesGeneral Context of Choice analysisFour broad frameworksSample and MeasurementIssues in Model BuildingR and Tests for Categorical DataInference for a (Single) ProportionTwo-Way Contingency TablesThe Odds-RatioChi-Squared Tests of IndependenceZoom meetingWe will use Zoom.</description>
+    </item>
     
     <item>
       <title></title>
@@ -23,13 +50,12 @@ You find here
     </item>
     
     <item>
-      <title>About Discret Choice Modelling</title>
+      <title>About</title>
       <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Things to be here:
-Thanks for reading!</description>
+      <description>Description of the courseEnseignant :Iragaël Joly 1, MCF HDR, Grenoble INP Génie industrielContenu :L’objectif du cours est de présenter et appliquer les méthodes économétriques de modélisations des variables qualitatives et des choix discrets. Les premières sont adaptées pour modéliser des outcomes qualitatifs ordonnés ou non (par ex : modèles logit et probit). Les modèles de choix discrets sont utilisés pour l’étude désagrégée des comportements individuels de consommation et l’étude de la demande.</description>
     </item>
     
     <item>
@@ -48,30 +74,44 @@ PDF</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/lessons/</guid>
-      <description>This is the website of the Lesson Discret Choice Modelling taught at Grenoble INP Industrial Engineering and Management School &amp;amp; UGA.
-First Lesson</description>
+      <description>Lessons listThis is the website of the Lesson Discret Choice Modelling taught at Grenoble UGA.
+First Lesson - 05/10/2020 - 9:00 - 12:00Welcome page of First Lesson
+Second Lesson - 12/10/2020 - 9:00 - 12:00Material for the Second Lesson
+</description>
     </item>
     
     <item>
-      <title>Discret Choice Modelling</title>
+      <title>Introduction to Reproducible Analysis</title>
+      <link>/lessons_list/lesson_0.1_reproducibleresearch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/lessons_list/lesson_0.1_reproducibleresearch/</guid>
+      <description>Reproducible AnalysisTypical data analysis workflow looks like this:
+collect dataput it in a file or spreadsheet or databaserun some analyses, written in various scripts,perhaps saving some intermediate results along the wayor maybe always working on the raw data.create some plots or tables of relevant summaries of the data,and then
+go and write a report about the results in a text editor or word processor.</description>
+    </item>
+    
+    <item>
+      <title>Other Lessons list</title>
       <link>/otherlessons/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/otherlessons/</guid>
-      <description>Here are links to other lessons I have push online
-Basic Economics for IEM</description>
+      <description>Here are links to other lessons I have pushed online
+Basic Economics for IEM
+Discrete Choice Modelling
+Smart Analytics for Big Data</description>
     </item>
     
     <item>
-      <title>Introduction to Discret Choice Lesson</title>
-      <link>/post/2020-08_introduction/</link>
+      <title>References</title>
+      <link>/references/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-08_introduction/</guid>
-      <description>IntroductionThese Introduction slides present:
-Table of contents
-IntroductionProgramMotivationsImportance of DCMCourse ObjectivesGeneral Context of Choice analysisFour broad frameworksSample and MeasurementIssues in Model BuildingR and Tests for Categorical DataInference for a (Single) ProportionTwo-Way Contingency TablesThe Odds-RatioChi-Squared Tests of IndependenceProgram5 steps/lessons :
-• Introduction• Binary Choice• Multinomial Choices• Advanced Models : papers presentation (with application)• Discussion : papers discussion (reversed class)• Guided work sessions</description>
+      <guid>/references/</guid>
+      <description>Softwares InstallationR and RStudioLateX edition: MikteXIntroduction to R and StatisticsIntroductory Statistics with R, Peter Dalgaard, Caseine Link
+Introduction to Statistical Learning with Applications in R, Gareth James, Daniela Witten, Trevor Hastie and Robert, Tibshirani website
+Introduction to RMarkdownRMarkdown Cheatsheet pdfR Markdown: The Definitive Guide, Yihui Xie, J. J. Allaire, Garrett Grolemund (access the bookdown)[https://bookdown.org/yihui/rmarkdown/]Agresti, A.</description>
     </item>
     
     <item>

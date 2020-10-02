@@ -1,0 +1,265 @@
+---
+title: "Introduction to Reproducible Analysis"
+subtitle: "Smart Analytics for Big Data"
+author: "Iragaël Joly"
+date: "Automn 2020"
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+authorbox: false
+---
+
+
+
+## Reproducible Analysis
+
+Typical data analysis workflow looks like this: 
+
+1. collect data 
+2. put it in a file or spreadsheet or database
+3. run some analyses, written in various scripts, 
+4. perhaps saving some intermediate results along the way 
+4. or maybe always working on the raw data.
+5. create some plots or tables of relevant summaries of the data, 
+
+and then 
+
+6. go and write a report about the results in a text editor or word processor.
+
+This workflow has many potential problems.
+
+1. Separation between the analysis scripts and the data,
+2. Separation between the analysis and the documentation of the analysis.
+
+
+**Issue 1**
+
+It is common to have scripts for different parts of the analysis, with one script storing intermediate results that are then read by the next script. 
+
+The scripts describe a workflow of data analysis and, to reproduce an analysis, all the scripts have to be run in the right order (which is maybe only described in a text file or, only in the head of the data scientist)
+
+> Objectives: Analysis scripts written in a way in which you can rerun any part of your workflow, completely automatically, at any time
+
+**Issue 2**
+
+Even if the workflow is automated and easy to run again, the documentation quickly drifts away from the actual analysis scripts. 
+
+If the documentation drifts far enough from the actual analysis, it becomes
+completely useless.
+
+> Objectives: to have dynamic documentation. Reports that describe the analysis workflow in a form that can be understood both by machines and humans. 
+
+Machines use the report as an automated workflow that can redo the analysis at any time. 
+
+We humans use it as documentation that always accurately describes the analysis workflow that we run.
+
+**Literate Programming**
+
+With Javadoc and Roxygen, the code is the primary document, and the documentation is comments added to it.
+With literate programming, the documentation is the primary text for humans to read and the code is part of this documentation, included where it falls naturally to have it. 
+The computer code is extracted automatically from this document when the program runs.
+
+
+
+
+
+## RMarkdown  and Dynamic document
+
+Analyses need to be communicated to others. Publishing papers, blog posts, PowerPoint presentations, books or dashboards are many outputs or documents taht will be connected to the results analysis. 
+
+R Markdown permits to publish documents integrated the analysis and visualization.
+
+R Markdown is a package, as well as an ecosystem of tools. 
+
+It allows to add R code to a plain-text file with some Markdown formatting.
+
+Many output formats are rendered PDF, HTML, Microsoft Word, and Microsoft PowerPoint.
+
+The rendering operation, also called knitting, runs the R code insert the resulting output and figures in the final document: a **dynamic document**.
+
+Yihui Xie, J. J. Allaire, and Garrett Grolemund have written R Markdown: *The Definitive Guide* and also made the source R Markdown available on [GitHub](https://github.com/rstudio/rmarkdown-book) [^1].
+
+[^1]: Note that many bookdowns are freely available online. (https://bookdown.org/)
+
+Specialized packages extend R Markdown for blogging (`blogdown`), for books (`bookdown`), and for making gridded dashboards (`flexdashboard`). 
+
+The initial package in the ecosystem is called `knitr`, and we still call the process of turning R Markdown into a final format knitting the document. 
+
+Many output formats are supported by the R Markdown ecosystem, among which: HTML, LaTeX-pdf, Microsoft Word, and Microsoft PowerPoint.
+
+R Markdown is not dependent on RStudio.
+It’s possible to edit plain-text R Markdown files with a text editor and then knit the document using R’s command-line interface. 
+
+However, the RStudio tools are so helpful.
+
+
+
+
+## Creating an R Markdown
+
+To create a new Rmd file, go to File menu, choose New File and then R Markdown.
+
+A pop-up window propose the document type to make and add some information, such as title and author name (you can change it later).
+
+The result is a new RMarkdown file with `---` surrounding the YALM (or preambule): the meta-information for the document. After the second `---` is the actual text. 
+
+The text of the document consists of a mix of text, formatted in the Markdown language, (or LateX language) and R code encapsuled in chunck.
+
+This file is a template for a new R Markdown document. You can edit the template: change the text, alter the R code, ...
+
+**First step**
+
+Once the new RMarkdown file is open. You have to save the file (you be asked to before knitting the document).
+
+The new document (let say a pdf-LateX file) will have the same file name as the RMarkdown file.
+
+In the toolbar, there is a button `Knit`, plus a menu to choose specific formats.
+
+The RMarkdown file will have suffix `.Rmd` and the HTML file will have the same prefix, but with the suffix `.html`.
+
+The engine buton give access to options of the RMarkdown interface (output in the text or in console; preview in pane or new window, etc)
+
+Choosing a different output format, will update the YAML (the metadata in the header of your file)
+
+Knitting the document, will make the preview appear (in new window or pane). The specific "RMarkdown" bottom left pane will appear and give you information on the process. First the R code chuncks are evaluated by the knitr package. Results such as table, data and plots according are stored in a Markdown document (notice no R). This Markdown document is then passed to Pandoc, which is generate the final document and output file.
+
+
+**Common Markdown formatting syntax**
+
+|  Markdown [^2] | 	Output  |
+|-------------|-----------|
+| plain text |	plain text  |
+| `*italics*` | 	*italics* | 
+| `**bold**` | 	**bold** | 
+| `` `code ` ``   	| `code`| 
+| `sub~script~` | 	sub~script~| 
+| `super^script^` | 	super^script^| 
+| `~~strikethrough~~` | 	~~strikethrough~~| 
+| `endash: --` | 	endash: --| 
+| `emdash: ---` | 	emdash: --—| 
+
+[^2]: Note that you may want to print in your output document some RMarkdown command (like `` `code` ``). You need to use some espace characters, usually escape with the `\` character: `` \` `` or to use  ` `` `.
+
+### Headers
+
+```
+# Level 1 Heading
+## Level 2 Heading
+### Level 3 Heading
+```
+
+### List and points
+
+```
+* first item
+* second item
+* third item
+```
+
+**Sublist**
+
+```
+* first item
+   * first subitem
+   * second subitem
+   * third subitem
+* second item
+```
+
+The rules for lists are a bit strict:
+
+   - There must be a blank line before the list.
+   - There must be a blank line after the list.
+   - There must be a space character after the leading asterisk (or other character `+`, `-`.
+   - The sublists must be indented by two, three, or four spaces relative to the level above. No more, no less
+
+The R Cookbook recommands using the prefix `1.` to identify numbered lists. You can also use `a.` and `i.`
+
+```
+1. first item
+1. second item
+   a. subitem 1
+   a. subitem 2
+      i. sub-subitem 1
+      i. sub-subitem 2
+   a. subitem 2
+1. third item
+```
+
+
+
+## Embedded Rcode
+
+
+### Code Chuncks
+
+R code instructions are delimited by:
+
+    ```{r}`r ''`
+    # R instruction here
+    ```
+
+with `{r}` indicating R language 
+
+`#` is then usefull to add comments in the R code instructions
+
+*Example*
+
+    ```{r}`r ''`
+    sqrt(pi)
+    sqrt(1:5)
+    ```
+
+will print `r round(sqrt(pi),4)`... and `r sqrt(1:5)` 
+
+
+#### In-line R instruction
+
+Using  `` ` `` adds the result of the instruction inline  the text.
+
+For example:
+
+
+`The square root of $\pi$ is`  `` `r "\u0060r sqrt(pi)\u0060"` `` 
+
+
+will print. 
+
+The square root of  $\pi$  is `r sqrt(pi)`. 
+
+### Chunck options
+
+
+    ```{r echo=FALSE}`r ''`
+    ```
+*Options that control what’s shown in the final document*
+
+| Chunk option | 	Executes code | 	Shows code | 	Shows output text | 	Shows figures | 
+|-------|----------|----------|---------|----------|
+| results='hide' | 	X | 	X 	|     |  	X| 
+| include=FALSE | 	X 	|     | 		|    | 
+| echo=FALSE | 	X 	   |   | 	X | 	X| 
+| fig.show='hide' | 	X  | 	X | 	X | 	| 
+| eval=FALSE 	| 	| X | | 	| 
+
+Hidding the error messages, warning messages, and informational messages: 
+
+- `error=TRUE` build completely the document, even if there is an error in the code chunk. This is helpful when you’re creating a document where you specifically want to see the error in the output.
+- `warning=FALSE` suppresses warning messages.
+
+- `message=FALSE` suppresses informational messages. Usefull when using packages that produce messages while loading.
+
+
+### Some usefull tricks
+
+#### Comments
+
+`<!-- your comment -->`
+
+#### Escaping chunck and inline instruction
+
+The line 
+
+`The square root of pi is`  `` `r "\u0060r sqrt(pi)\u0060"` `` 
+
+comes from `` `The square root of pi is` ``  ``` `` `r ```  `"\u0060r` ` sqrt(pi)` `\u0060"` ``` ` `` ```
+

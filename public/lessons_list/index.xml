@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lessons_lists on Discret Choice Modelling Lesson</title>
+    <link>/lessons_list/</link>
+    <description>Recent content in Lessons_lists on Discret Choice Modelling Lesson</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/lessons_list/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introduction to Reproducible Analysis</title>
+      <link>/lessons_list/lesson_0.1_reproducibleresearch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/lessons_list/lesson_0.1_reproducibleresearch/</guid>
+      <description>Reproducible AnalysisTypical data analysis workflow looks like this:
+collect dataput it in a file or spreadsheet or databaserun some analyses, written in various scripts,perhaps saving some intermediate results along the wayor maybe always working on the raw data.create some plots or tables of relevant summaries of the data,and then
+go and write a report about the results in a text editor or word processor.</description>
+    </item>
+    
+  </channel>
+</rss>

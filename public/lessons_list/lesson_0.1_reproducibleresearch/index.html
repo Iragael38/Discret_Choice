@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Introduction to Reproducible Analysis - Discret Choice Modelling Lesson</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Introduction to Reproducible Analysis" />
+<meta property="og:description" content="Reproducible AnalysisTypical data analysis workflow looks like this:
+collect dataput it in a file or spreadsheet or databaserun some analyses, written in various scripts,perhaps saving some intermediate results along the wayor maybe always working on the raw data.create some plots or tables of relevant summaries of the data,and then
+go and write a report about the results in a text editor or word processor." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/lessons_list/lesson_0.1_reproducibleresearch/" />
+
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Discret Choice Modelling Lesson" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Discret Choice Modelling Lesson</div>
+					<div class="logo__tagline">Lesson at Grenoble UGA</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/lessons/">
+				
+				<span class="menu__text">Lessons</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/otherlessons/">
+				
+				<span class="menu__text">Other Classes</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/references/">
+				
+				<span class="menu__text">References</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Introduction to Reproducible Analysis</h1>
+			<div class="post__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/r/" rel="category">R</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			
+
+
+<div id="reproducible-analysis" class="section level2">
+<h2>Reproducible Analysis</h2>
+<p>Typical data analysis workflow looks like this:</p>
+<ol style="list-style-type: decimal">
+<li>collect data</li>
+<li>put it in a file or spreadsheet or database</li>
+<li>run some analyses, written in various scripts,</li>
+<li>perhaps saving some intermediate results along the way</li>
+<li>or maybe always working on the raw data.</li>
+<li>create some plots or tables of relevant summaries of the data,</li>
+</ol>
+<p>and then</p>
+<ol start="6" style="list-style-type: decimal">
+<li>go and write a report about the results in a text editor or word processor.</li>
+</ol>
+<p>This workflow has many potential problems.</p>
+<ol style="list-style-type: decimal">
+<li>Separation between the analysis scripts and the data,</li>
+<li>Separation between the analysis and the documentation of the analysis.</li>
+</ol>
+<p><strong>Issue 1</strong></p>
+<p>It is common to have scripts for different parts of the analysis, with one script storing intermediate results that are then read by the next script.</p>
+<p>The scripts describe a workflow of data analysis and, to reproduce an analysis, all the scripts have to be run in the right order (which is maybe only described in a text file or, only in the head of the data scientist)</p>
+<blockquote>
+<p>Objectives: Analysis scripts written in a way in which you can rerun any part of your workflow, completely automatically, at any time</p>
+</blockquote>
+<p><strong>Issue 2</strong></p>
+<p>Even if the workflow is automated and easy to run again, the documentation quickly drifts away from the actual analysis scripts.</p>
+<p>If the documentation drifts far enough from the actual analysis, it becomes
+completely useless.</p>
+<blockquote>
+<p>Objectives: to have dynamic documentation. Reports that describe the analysis workflow in a form that can be understood both by machines and humans.</p>
+</blockquote>
+<p>Machines use the report as an automated workflow that can redo the analysis at any time.</p>
+<p>We humans use it as documentation that always accurately describes the analysis workflow that we run.</p>
+<p><strong>Literate Programming</strong></p>
+<p>With Javadoc and Roxygen, the code is the primary document, and the documentation is comments added to it.
+With literate programming, the documentation is the primary text for humans to read and the code is part of this documentation, included where it falls naturally to have it.
+The computer code is extracted automatically from this document when the program runs.</p>
+</div>
+<div id="rmarkdown-and-dynamic-document" class="section level2">
+<h2>RMarkdown and Dynamic document</h2>
+<p>Analyses need to be communicated to others. Publishing papers, blog posts, PowerPoint presentations, books or dashboards are many outputs or documents taht will be connected to the results analysis.</p>
+<p>R Markdown permits to publish documents integrated the analysis and visualization.</p>
+<p>R Markdown is a package, as well as an ecosystem of tools.</p>
+<p>It allows to add R code to a plain-text file with some Markdown formatting.</p>
+<p>Many output formats are rendered PDF, HTML, Microsoft Word, and Microsoft PowerPoint.</p>
+<p>The rendering operation, also called knitting, runs the R code insert the resulting output and figures in the final document: a <strong>dynamic document</strong>.</p>
+<p>Yihui Xie, J. J. Allaire, and Garrett Grolemund have written R Markdown: <em>The Definitive Guide</em> and also made the source R Markdown available on <a href="https://github.com/rstudio/rmarkdown-book">GitHub</a> <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Specialized packages extend R Markdown for blogging (<code>blogdown</code>), for books (<code>bookdown</code>), and for making gridded dashboards (<code>flexdashboard</code>).</p>
+<p>The initial package in the ecosystem is called <code>knitr</code>, and we still call the process of turning R Markdown into a final format knitting the document.</p>
+<p>Many output formats are supported by the R Markdown ecosystem, among which: HTML, LaTeX-pdf, Microsoft Word, and Microsoft PowerPoint.</p>
+<p>R Markdown is not dependent on RStudio.
+It’s possible to edit plain-text R Markdown files with a text editor and then knit the document using R’s command-line interface.</p>
+<p>However, the RStudio tools are so helpful.</p>
+</div>
+<div id="creating-an-r-markdown" class="section level2">
+<h2>Creating an R Markdown</h2>
+<p>To create a new Rmd file, go to File menu, choose New File and then R Markdown.</p>
+<p>A pop-up window propose the document type to make and add some information, such as title and author name (you can change it later).</p>
+<p>The result is a new RMarkdown file with <code>---</code> surrounding the YALM (or preambule): the meta-information for the document. After the second <code>---</code> is the actual text.</p>
+<p>The text of the document consists of a mix of text, formatted in the Markdown language, (or LateX language) and R code encapsuled in chunck.</p>
+<p>This file is a template for a new R Markdown document. You can edit the template: change the text, alter the R code, …</p>
+<p><strong>First step</strong></p>
+<p>Once the new RMarkdown file is open. You have to save the file (you be asked to before knitting the document).</p>
+<p>The new document (let say a pdf-LateX file) will have the same file name as the RMarkdown file.</p>
+<p>In the toolbar, there is a button <code>Knit</code>, plus a menu to choose specific formats.</p>
+<p>The RMarkdown file will have suffix <code>.Rmd</code> and the HTML file will have the same prefix, but with the suffix <code>.html</code>.</p>
+<p>The engine buton give access to options of the RMarkdown interface (output in the text or in console; preview in pane or new window, etc)</p>
+<p>Choosing a different output format, will update the YAML (the metadata in the header of your file)</p>
+<p>Knitting the document, will make the preview appear (in new window or pane). The specific “RMarkdown” bottom left pane will appear and give you information on the process. First the R code chuncks are evaluated by the knitr package. Results such as table, data and plots according are stored in a Markdown document (notice no R). This Markdown document is then passed to Pandoc, which is generate the final document and output file.</p>
+<p><strong>Common Markdown formatting syntax</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Markdown <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>plain text</td>
+<td>plain text</td>
+</tr>
+<tr class="even">
+<td><code>*italics*</code></td>
+<td><em>italics</em></td>
+</tr>
+<tr class="odd">
+<td><code>**bold**</code></td>
+<td><strong>bold</strong></td>
+</tr>
+<tr class="even">
+<td><code>`code `</code></td>
+<td><code>code</code></td>
+</tr>
+<tr class="odd">
+<td><code>sub~script~</code></td>
+<td>sub<sub>script</sub></td>
+</tr>
+<tr class="even">
+<td><code>super^script^</code></td>
+<td>super<sup>script</sup></td>
+</tr>
+<tr class="odd">
+<td><code>~~strikethrough~~</code></td>
+<td><del>strikethrough</del></td>
+</tr>
+<tr class="even">
+<td><code>endash: --</code></td>
+<td>endash: –</td>
+</tr>
+<tr class="odd">
+<td><code>emdash: ---</code></td>
+<td>emdash: –—</td>
+</tr>
+</tbody>
+</table>
+<div id="headers" class="section level3">
+<h3>Headers</h3>
+<pre><code># Level 1 Heading
+## Level 2 Heading
+### Level 3 Heading</code></pre>
+</div>
+<div id="list-and-points" class="section level3">
+<h3>List and points</h3>
+<pre><code>* first item
+* second item
+* third item</code></pre>
+<p><strong>Sublist</strong></p>
+<pre><code>* first item
+   * first subitem
+   * second subitem
+   * third subitem
+* second item</code></pre>
+<p>The rules for lists are a bit strict:</p>
+<ul>
+<li>There must be a blank line before the list.</li>
+<li>There must be a blank line after the list.</li>
+<li>There must be a space character after the leading asterisk (or other character <code>+</code>, <code>-</code>.</li>
+<li>The sublists must be indented by two, three, or four spaces relative to the level above. No more, no less</li>
+</ul>
+<p>The R Cookbook recommands using the prefix <code>1.</code> to identify numbered lists. You can also use <code>a.</code> and <code>i.</code></p>
+<pre><code>1. first item
+1. second item
+   a. subitem 1
+   a. subitem 2
+      i. sub-subitem 1
+      i. sub-subitem 2
+   a. subitem 2
+1. third item</code></pre>
+</div>
+</div>
+<div id="embedded-rcode" class="section level2">
+<h2>Embedded Rcode</h2>
+<div id="code-chuncks" class="section level3">
+<h3>Code Chuncks</h3>
+<p>R code instructions are delimited by:</p>
+<pre><code>```{r}
+# R instruction here
+```</code></pre>
+<p>with <code>{r}</code> indicating R language</p>
+<p><code>#</code> is then usefull to add comments in the R code instructions</p>
+<p><em>Example</em></p>
+<pre><code>```{r}
+sqrt(pi)
+sqrt(1:5)
+```</code></pre>
+<p>will print 1.7725… and 1, 1.4142136, 1.7320508, 2, 2.236068</p>
+<div id="in-line-r-instruction" class="section level4">
+<h4>In-line R instruction</h4>
+<p>Using <code>`</code> adds the result of the instruction inline the text.</p>
+<p>For example:</p>
+<p><code>The square root of $\pi$ is</code> <code>`r sqrt(pi)`</code></p>
+<p>will print.</p>
+<p>The square root of <span class="math inline">\(\pi\)</span> is 1.7724539.</p>
+</div>
+</div>
+<div id="chunck-options" class="section level3">
+<h3>Chunck options</h3>
+<pre><code>```{r echo=FALSE}
+```</code></pre>
+<p><em>Options that control what’s shown in the final document</em></p>
+<table>
+<thead>
+<tr class="header">
+<th>Chunk option</th>
+<th>Executes code</th>
+<th>Shows code</th>
+<th>Shows output text</th>
+<th>Shows figures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>results=‘hide’</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>include=FALSE</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>echo=FALSE</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>fig.show=‘hide’</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>eval=FALSE</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Hidding the error messages, warning messages, and informational messages:</p>
+<ul>
+<li><code>error=TRUE</code> build completely the document, even if there is an error in the code chunk. This is helpful when you’re creating a document where you specifically want to see the error in the output.</li>
+<li><p><code>warning=FALSE</code> suppresses warning messages.</p></li>
+<li><p><code>message=FALSE</code> suppresses informational messages. Usefull when using packages that produce messages while loading.</p></li>
+</ul>
+</div>
+<div id="some-usefull-tricks" class="section level3">
+<h3>Some usefull tricks</h3>
+<div id="comments" class="section level4">
+<h4>Comments</h4>
+<p><code>&lt;!-- your comment --&gt;</code></p>
+</div>
+<div id="escaping-chunck-and-inline-instruction" class="section level4">
+<h4>Escaping chunck and inline instruction</h4>
+<p>The line</p>
+<p><code>The square root of pi is</code> <code>`r sqrt(pi)`</code></p>
+<p>comes from <code>`The square root of pi is`</code> <code>`` `r</code> <code>"\u0060r</code> <code>sqrt(pi)</code> <code>\u0060"</code> <code>` ``</code></p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Note that many bookdowns are freely available online. (<a href="https://bookdown.org/" class="uri">https://bookdown.org/</a>)<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Note that you may want to print in your output document some RMarkdown command (like <code>`code`</code>). You need to use some espace characters, usually escape with the <code>\</code> character: <code>\`</code> or to use <code>``</code>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/r-markdown/" rel="tag">R Markdown</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/plot/" rel="tag">plot</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/regression/" rel="tag">regression</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Discret Choice Modelling Lesson.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

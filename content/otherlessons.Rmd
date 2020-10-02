@@ -1,13 +1,14 @@
 ---
-title: "Discret Choice Modelling"
-subtitle: "Other Lessons list"
+title: "Other Lessons list"
 author: "Iragaël Joly"
 date: "Automn 2020"
-categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
 authorbox: false
 ---
 
-Here are links to other lessons I have push online
+Here are links to other lessons I have pushed online
 
 [Basic Economics for IEM](https://sie-basic-eco.netlify.app/)
+
+[Discrete Choice Modelling](https://discretchoicemodelling.netlify.app/)
+
+[Smart Analytics for Big Data](https://sabd-smartanalytics.netlify.app/)

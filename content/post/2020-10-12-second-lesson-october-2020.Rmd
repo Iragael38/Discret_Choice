@@ -1,0 +1,47 @@
+---
+title: "Second Lesson October 2020"
+author: IJ
+date: '2020-10-12'
+categories:
+  - Lesson
+tags:
+  - Lesson
+description: ''
+thumbnail: ''
+---
+
+# Second Lesson
+
+Welcome to the second lesson - 12/10/2020 9:00 - 12:00
+
+
+
+   
+## Zoom meeting
+
+We will use Zoom.
+
+You can connect to zoom:
+
+1. following this link: (https://grenoble-inp.zoom.us/j/91637254513?pwd=ejB2K0ZYbHZTL0xGNHUyTU5sUDI0UT09)
+
+
+(and, if needed, install the zoom app).
+
+1. or you can start the Zoom app with the following information
+  + meeting ID: 916 3725 4513
+  + Password: ECO3
+
+## Class platforms
+
+Depending on the teacher, we will use *Caseine*
+
+I (Iragaël Joly) will try to maintain this blog as a plateform to merge all information and connect to the Caseine and Chamilo plateforms.
+
+ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
+
+
+## Class material
+
+
+

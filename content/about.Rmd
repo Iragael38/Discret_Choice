@@ -1,13 +1,54 @@
 ---
-title: About Discret Choice Modelling
-date: "2020-08"
+title: "About"
+date: "2020-09"
 menu: main
 sidebar: false
 authorbox: false
 ---
 
-Things to be here:
+# Description of the course
 
-- 
+## Enseignant :
+
+- *Iragaël Joly* [^1], MCF HDR, Grenoble INP Génie industriel
+  
+[^1]: corresponding teacher: iragael.joly@grenoble-inp.fr
+
+
+## Contenu : 
+L’objectif du cours est de présenter et appliquer les méthodes économétriques de modélisations des variables qualitatives et des choix discrets. Les premières sont adaptées pour modéliser des outcomes qualitatifs ordonnés ou non (par ex : modèles logit et probit). Les modèles de choix discrets sont utilisés pour l’étude désagrégée des comportements individuels de consommation et l’étude de la demande. Ces méthodes permettent par exemple d’estimer et de prédire les parts de marché entre différents produits, les consentements à payer pour un produit ou pour un attribut spécifique. Ce cours reviendra sur les notions de surplus du consommateur et sur les solutions pour les estimer. 
+
+## Plan du cours :
+
+1.	Rappel sur les variables qualitatives et le modèle LPM
+2.	Le modèle de régression logistique et probit sur choix discrets binaires
+3.	Méthodes de préférences révélées et préférences déclarées et méthodologie du choice experiment ?
+4.	Le modèle Logit Multinomial (MNL) et les Random Utility Models (RUM)
+5.	Relaxer l’hypothèse IID - Les modèles Nested, à classe latente et Mixed
+
+## Bibliographie :
+
+Discrete Choice Methods with Simulation Broché – (2009) de Kenneth E. Train
+
+## Fonctionnement du cours et mode d’évaluation : 
+
+Cours théoriques et séances appliquées en salle informatique (usage de RStudio). 
+Evaluation : 40% de Contrôle Continu (projets/TP) et 60% d’examen. 
+
+## Prérequis : 
+
+Econométrie (L3 et M1), initiation au langage R
+
+
+
+# References
+
+---
+\nocite: |
+Greene2008, @McFadden2014,
+   @McFaddenTrain2000,@HensherGreene2003,@Hensheretal2005,@Gujarati2003
+   @Agresti2013, @Millot2012,@Cornillonetal2008,  @Louviereetal2000, @HessDaly2014, @xie2015, @xie2016, @McFaddenTrain2000, @Train2009 
 
 Thanks for reading!
+
+[Here](https://ijolyresearch.netlify.app/) you find presentation of my activities
