@@ -64,3 +64,4 @@ I (Iragaël Joly) will try to maintain this blog as a plateform to merge all inf
 
 [oddsratio.R](/Data-pdf/oddsratio.R)
 
+[01_Script_Introduction.R](/Data-pdf/01_Script_Introduction.R)
