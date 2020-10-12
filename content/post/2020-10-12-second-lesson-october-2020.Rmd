@@ -43,5 +43,9 @@ I (Iragaël Joly) will try to maintain this blog as a plateform to merge all inf
 
 ## Class material
 
+[Binary logistic](/Data-pdf/020_LogisticRegression_E3.pdf)
 
+[titanic4.RData](/Data-pdf/titanic4.RData)
+
+[Tab151.txt](/Data-pdf/Tab151.txt)
 
