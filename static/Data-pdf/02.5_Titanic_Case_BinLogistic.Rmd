@@ -1,0 +1,238 @@
+---
+title: "Titanic_Binary_Logistic"
+author: "I Joly"
+date: "09/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+library(knitr)
+```
+
+# Titanic Case Study - (source: F.E. Harrel, (2015), Regression Modeling Strategies, 2nd Ed., Springer, chap. 12)
+
+This case study demonstrates the development of a binary logistic regression
+model to describe patterns of survival in passengers on the Titanic, based on
+passenger age, sex, ticket class, and the number of family members accompanying each passenger. Nonparametric regression is also used. Since many of the passengers had missing ages, multiple imputation is used so that the complete information on the other variables can be efficiently utilized. Titanic passenger data were gathered by many researchers. Primary references are the Encyclopedia Titanica at www.encyclopedia-titanica.org and Eaton and
+Haas.Titanic survival patterns have been analyzed previously
+but without incorporation of individual passenger ages. Thomas Cason while
+a University of Virginia student compiled and interpreted the data from the
+World Wide Web. One thousand three hundred nine of the passengers are
+represented in the dataset, which is available from this text's Web site under the name titanic3. An early analysis of Titanic data may be found in Bron.
+
+## Descriptive Statistics
+
+We select the variables of interest
+
+```{r}
+require(rms)
+# getHdata(titanic3) # get dataset from web site
+# save(titanic3, file = "G:/IRA/888_ESE UPMF/2019_C2ES_M2_Econometrie3/Scripts and Dataframes/titanic3.RData")
+
+load("G:/IRA/888_ESE UPMF/2019_C2ES_M2_Econometrie3/Scripts and Dataframes/titanic3.RData") 
+
+# List of names of variables to analyze
+v <-  c('pclass', 'survived', 'age', 'sex', 'sibsp', 'parch')
+t3 <-  titanic3[, v]
+units(t3$age) <-  'years '
+describe(t3)
+```
+
+We save the data distribution characteristics (for calculous of predictors, figures, etc)
+We truncate the distribution of `sibsp` and `parch` at 3 (more than 3 spouses or more than 3 children)
+Missing values are noticeable for `age`.
+
+To study show four-way empirical relationships with the fraction of surviving passengers by creating four cells for `sibsp × parch` combinations and by creating two age groups.
+We suppress proportions based on less than 25 passengers.
+ 
+Last 2 variables have non-monotonic effects.
+
+
+```{r}
+dd <-  datadist(t3)    # describe distributions of variables to rms
+options(datadist = 'dd' )
+s <-  summary(survived ∼ age + sex + pclass + cut2(sibsp ,0:3) + cut2(parch ,0:3), data =t3)
+plot(s, main = ' ' , subtitles =FALSE ) # Figure 12.1
+```
+
+
+
+## Non parametric exploration
+
+```{r}
+tn <-  transform (t3 ,
+agec = ifelse(age < 21, ' child ' , ' adult ' ),
+sibsp = ifelse(sibsp == 0, ' no sib/sp ' , ' sib/sp ' ),
+parch = ifelse(parch == 0, ' no par/child ' , ' par/child ' ))
+g <-  function(y) if(length (y) < 25) NA else mean(y)
+s <-  with(tn , summarize (survived , llist(agec , sex , pclass , sibsp , parch ), g))
+# llist , summarize in Hmisc package
+# Figure 12.2:
+ggplot(subset(s, agec != ' NA ' ),
+aes(x=survived , y=pclass , shape =sex)) +
+geom_point() + facet_grid(agec ∼ sibsp * parch ) +
+xlab( ' Proportion Surviving ' ) + ylab( ' Passenger Class ') +
+scale_x_continuous(breaks =c(0, .5 , 1))
+```
+
+Effects of `sibsp` and `parch` seem small on absolute risk.
+
+```{r}
+# Figure 12.3
+b <-  scale_size_discrete(range =c(.1 , .85))
+yl <-  ylab(NULL)
+p1 <-  ggplot(t3 , aes(x=age , y=survived )) +
+  histSpikeg(survived ∼ age , lowess =TRUE , data =t3) + 
+  ylim (0,1) + yl
+p2 <-  ggplot(t3 , aes(x=age , y=survived , color =sex)) +
+  histSpikeg (survived ∼ age + sex , lowess =TRUE ,data =t3) + ylim (0,1) +
+  yl
+p3 <-  ggplot(t3 , aes(x=age , y=survived , size =pclass )) + 
+  histSpikeg (survived ∼ age + pclass , lowess =TRUE, data =t3) + 
+  b + ylim (0,1) + yl
+p4 <-  ggplot(t3 , aes(x=age , y=survived , color =sex, size =pclass )) +
+  histSpikeg (survived ∼ age + sex + pclass, lowess =TRUE , data =t3) + 
+  b + ylim (0,1) + yl
+gridExtra::grid.arrange(p1 , p2 , p3 , p4 , ncol =2) # combine 4
+```
+
+Nonparametric regression (loess) estimates of the relationship between
+age and the probability of surviving the Titanic, with tick marks depicting the age
+distribution. The top left panel shows unstratified estimates of the probability of
+survival. Other panels show nonparametric estimates by various stratifications
+
+Figure shows much of the story of passenger survival patterns."Women and children first" seems to be true except for women in third class. It is
+interesting that there is no real cutoff for who is considered a child. For men, the younger the greater chance of surviving. The interpretation of the effects of the "number of relatives"-type variables will be more difficult, as their definitions are a function of age. Figure 12.4 shows these relationships.
+
+
+```{r}
+top <-  theme(legend.position = ' top ' )
+p1 <-  ggplot(t3 , aes(x=age , y=survived , color =cut2(sibsp , 0:2))) + 
+  stat_plsmo() + b + ylim(0,1) + yl + top + 
+  scale_color_discrete(name= ' siblings /spouses ' )
+
+p2 <-  ggplot(t3 , aes(x=age , y=survived , color =cut2(parch , 0:2))) + 
+  stat_plsmo() + b + ylim(0,1) + yl + top + 
+  scale_color_discrete(name= ' parents/children ' )
+gridExtra::grid.arrange(p1 , p2 , ncol =2)
+```
+
+
+
+The standard analysis is performed eliminating observations having any missing data. 
+A first logistic model is developped allowing for a flexible nonlinear `age` effect that can differ in shape for all six `sex × class` strata. The `sibsp` and `parch` variables do not have sufficiently dispersed distributions to allow for us to model them nonlinearly.
+
+Also, there are too few passengers with nonzero values of these two variables in `sex × pclass × age` strata to allow us to model complex interactions involving them. The meaning of these variables does depend on the passenger's age, so we consider only age interactions involving `sibsp` and `parch`.
+
+
+
+```{r}
+tab1 <-  datadist(t3)
+# describe distributions of variables to rms
+options(datadist = 'tab1' )
+model1 <-  lrm(survived ∼ sex*pclass *rcs(age ,5) + rcs(age ,5)*(sibsp + parch ), data =t3) # Table 12.1
+kable(anova(model1))
+```
+Interactions are insignificant.
+
+A second model introduces second-order interactions
+```{r}
+full3 <- lrm(survived ∼ (sex + pclass + rcs(age ,5))^2 + rcs(age ,5)*sibsp , data=t3)
+full3
+```
+
+ROC area (`c`= 0.878) indicates a powerfull model. 
+
+```{r}
+anova(full3)
+```
+Effects of `sex`and `pclass` and `sbsp` are strong, interactions between `sex` and `pclass` and `age` and `pclass` are strong.
+
+### Exploration of estimated effects
+
+```{r}
+p <-  Predict(full3, age , sex , pclass , sibsp =0, fun=plogis )
+ggplot (p)
+ggplot (Predict(full3, sibsp , age=c(10 ,15 ,20,50), conf.int=FALSE ))
+```
+
+> Note that children having many siblings apparently had lower survival. Married
+adults had slightly higher survival than unmarried ones
+
+
+## Bootstrap and fit quality
+
+There will never be another Titanic, so we do not need to validate the
+model for prospective use. But we use the bootstrap to validate the model
+anyway, in an effort to detect whether it is overfitting the data.
+
+```{r}
+full3  <-  update(full3, x=TRUE , y=TRUE)
+# x=TRUE , y=TRUE adds raw data to fit object so can bootstrap
+set.seed (131) # so can replicate re-samples
+validate(full3, B=200)
+```
+
+```{r}
+cal <-  calibrate(full3, B=200) # Figure 12.7
+plot(cal , subtitles =FALSE )
+```
+
+
+> The output of validate indicates minor overfitting. Overfitting would have
+been worse had the risk factors not been so strong. The closeness of the calibration
+curve to the 45° line in the figure demonstrates excellent validation
+on an absolute probability scale. But the extent of missing data casts some
+doubt on the validity of this model, and on the efficiency of its parameter
+estimates
+
+
+
+
+## Summarizing the Fitted Model
+
+Computing odds ratios and by showing various predicted values. For age, the odds
+ratio for an increase from 1 year old to 30 years old is computed, instead of
+the default odds ratio based on outer quartiles of age. The estimated odds ratios are very dependent on the levels of interacting factors, so Figure depicts only one of many patterns.
+
+```{r, fig.cap="Odds ratios for some predictor settings"}
+# Get predicted values for certain types of passengers
+s  <-  summary(full3 , age=c(1,30), sibsp =0:1)
+# override default ranges for 3 variables
+plot(s, log=TRUE , main='')
+
+```
+
+Now compute estimated probabilities of survival for a variety of settings of
+the predictors.
+
+```{r}
+phat  <-predict(full3,
+combos <- 
+expand.grid(age=c(2,21,50) , sex=levels(t3$sex),
+pclass =levels(t3$pclass ),
+sibsp =0), type = 'fitted' )
+# Can also use Predict(f.mi , age=c(2 ,21 ,50) , sex , pclass ,
+# sibsp=0, fun=plogis)$yhat
+options(digits =1)
+data.frame(combos , phat)
+```
+
+
+We can also get predicted values by creating an R function that will evaluate
+the model on demand.
+
+
+```{r}
+pred.logit  <-  Function(full3)
+pred.logit
+
+# pred.logit  <- function(sex = "male",pclass = "3rd",age = 28,sibsp = 0) {3.3074612-1.147806*(sex=="male")+6.7308688*(pclass=="2nd")-1.643696*(pclass=="3rd")+0.088598205* age-0.00027403402*pmax(age-5,0)^3+0.0018218967*pmax(age-21,0)^3-0.0024456171*pmax(age-28,0)^3+0.00097921926*pmax(age-37,0)^3-8.1464797e-05*pmax(age-57,0)^3-1.0446073*sibsp+(sex=="male")*(-0.76821735*(pclass=="2nd")+2.1519988*(pclass=="3rd"))+(sex=="male")*(-0.21910626* age+0.00040097023*pmax(age-5,0)^3-0.0024252223*pmax(age-21,0)^3+0.0030960067*pmax(age-28,0)^3-0.0011663321*pmax(age-37,0)^3+9.4577515e-05*pmax(age-57,0)^3)+(pclass=="2nd")*(-0.54458849* age+0.00070842582*pmax(age-5,0)^3-0.0033115613*pmax(age-21,0)^3+0.0034736026*pmax(age-28,0)^3-0.00091782054*pmax(age-37,0)^3+4.7353438e-05*pmax(age-57,0)^3)+(pclass=="3rd")*(-0.16335153* age+0.00030342121*pmax(age-5,0)^3-0.0020072459*pmax(age-21,0)^3+0.0027885898*pmax(age-28,0)^3-0.0012193077*pmax(age-37,0)^3+0.00013454263*pmax(age-57,0)^3)+sibsp*(0.035708443* age-1.7252348e-05*pmax(age-5,0)^3+0.00020614832*pmax(age-21,0)^3-0.00044145778*pmax(age-28,0)^3+0.00031390291*pmax(age-37,0)^3-6.1341103e-05*pmax(age-57,0)^3) }
+
+
+
+plogis(pred.logit(age=c(2,21,50) , sex= 'male' , pclass = '3rd' ))
+
+```
+

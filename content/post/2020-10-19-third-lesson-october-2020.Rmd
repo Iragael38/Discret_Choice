@@ -1,0 +1,56 @@
+---
+title: "Third Lesson October 2020"
+author: IJ
+date: '2020-10-19'
+categories:
+  - Lesson
+tags:
+  - Lesson
+description: ''
+thumbnail: ''
+---
+
+# Third Lesson
+
+Welcome to the third lesson - 19/10/2020 9:00 - 12:00
+
+
+## Zoom meeting
+
+We will use Zoom.
+
+You can connect to zoom:
+
+1. following this link: (https://grenoble-inp.zoom.us/j/95345727181?pwd=RWJPYzFJMllnUDdDeGx6VDkwVW5TZz09)
+
+
+(and, if needed, install the zoom app).
+
+1. or you can start the Zoom app with the following information
+  + meeting ID: 953 4572 7181
+  + Password: ECO3
+
+## Class platforms
+
+We will use *Caseine*
+
+Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
+
+
+## Class material
+
+[Binary logistic](/Data-pdf/020_LogisticRegression_E3.pdf)
+
+[titanic4.RData](/Data-pdf/titanic4.RData)
+
+[Tab151.txt](/Data-pdf/Tab151.txt)
+
+### Supplementary material
+
+**Exercise GPA: ** [02_ex_8_GPA_V19.R](/Data-pdf/02_ex_8_GPA_V19.R)
+
+**Exercise Death Penalty: **[02_Allison_Penalty.R](/Data-pdf/02_Allison_Penalty.R)
+
+**Exercise Training Logistic regression: **[03_ex_Bin.R](/Data-pdf/03_ex_Bin.R)
+
+**Exercise Titanic: **[02.5_Titanic_Case_BinLogistic.R](/Data-pdf/02.5_Titanic_Case_BinLogistic.R)

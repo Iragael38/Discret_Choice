@@ -6,10 +6,25 @@
     <description>Recent content in Discret Choice Modelling on Discret Choice Modelling Lesson</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Third Lesson October 2020</title>
+      <link>/post/2020-10-19-third-lesson-october-2020/</link>
+      <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020-10-19-third-lesson-october-2020/</guid>
+      <description>Third LessonWelcome to the third lesson - 19/10/2020 9:00 - 12:00
+Zoom meetingWe will use Zoom.
+You can connect to zoom:
+following this link: (https://grenoble-inp.zoom.us/j/95345727181?pwd=RWJPYzFJMllnUDdDeGx6VDkwVW5TZz09)(and, if needed, install the zoom app).
+or you can start the Zoom app with the following informationmeeting ID: 953 4572 7181Password: ECO3Class platformsWe will use Caseine
+Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
+Class materialBinary logistic</description>
+    </item>
     
     <item>
       <title>Second Lesson October 2020</title>
@@ -35,6 +50,16 @@ I (Iragaël Joly) will try to maintain this blog as a plateform to merge all inf
 IntroductionThese Introduction slides present:
 Table of contents
 IntroductionProgramMotivationsImportance of DCMCourse ObjectivesGeneral Context of Choice analysisFour broad frameworksSample and MeasurementIssues in Model BuildingR and Tests for Categorical DataInference for a (Single) ProportionTwo-Way Contingency TablesThe Odds-RatioChi-Squared Tests of IndependenceZoom meetingWe will use Zoom.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/recordings/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/recordings/</guid>
+      <description>RecordingsRecordings of the lessons are accessible on GoogleDrive
+</description>
     </item>
     
     <item>
@@ -77,6 +102,7 @@ PDF</description>
       <description>Lessons listThis is the website of the Lesson Discret Choice Modelling taught at Grenoble UGA.
 First Lesson - 05/10/2020 - 9:00 - 12:00Welcome page of First Lesson
 Second Lesson - 12/10/2020 - 9:00 - 12:00Material for the Second Lesson
+Third Lesson - 19/10/2020 - 9:00 - 12:00Material for the Third Lesson
 </description>
     </item>
     
