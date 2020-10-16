@@ -47,7 +47,7 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
 
 ### Supplementary material
 
-**Exercise GPA: ** [02_ex_8_GPA_V19.R](/Data-pdf/02_ex_8_GPA_V19.R)
+**Exercise GPA: ** [02_ex_GPA_V19.R](/Data-pdf/02_ex_GPA_V19.R)
 
 **Exercise Death Penalty: **[02_Allison_Penalty.R](/Data-pdf/02_Allison_Penalty.R)
 
