@@ -57,8 +57,8 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
 
 ## Start of the Project 
 
-You can define the teams [Here](https://docs.google.com/spreadsheets/d/1Uxf_SjotuIQL4ZlF0r8_7ZaewL17Zmgbvzrh8h2OT70/edit#gid=0
-)
+You can define the teams [Here](https://docs.google.com/spreadsheets/d/1Uxf_SjotuIQL4ZlF0r8_7ZaewL17Zmgbvzrh8h2OT70/edit#gid=0)
+
 You will find on [Caseine](https://moodle.caseine.org/course/view.php?id=346) the zip-archive of files needed for the project (inc. statement)
 
 [Here](/Data-pdf/EnonceTP_Eco3_2020.pdf) is the statement of the project

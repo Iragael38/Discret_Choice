@@ -12,6 +12,12 @@ nocite: |
 
 # Welcome {.tabset}
 
+
+## What's new:
+
+- 29 oct: start of the [project](../post/2020-11-02-Project-2020) 
+- 29 oct: fourth lesson [link](../post/2020-11-02-fourth-lesson-november-2020) 
+
 This is the welcome page
 
 You find here
