@@ -24,3 +24,6 @@ Material for the [Second Lesson](../post/2020-10-12-second-lesson-october-2020)
 
 Material for the [Third Lesson](../post/2020-10-19-third-lesson-october-2020) 
 
+## Fourth Lesson - 02/11/2020 - 9:00 - 12:00
+
+Material for the [Fourth Lesson](../post/2020-11-02-fourth-lesson-november-2020) 

@@ -1,0 +1,64 @@
+---
+title: "Fourth Lesson October 2020"
+author: IJ
+date: '2020-11-02'
+categories:
+  - Lesson
+tags:
+  - Lesson
+description: ''
+thumbnail: ''
+---
+
+# Fourth Lesson
+
+Welcome to the fourth lesson - 02/11/2020 9:00 - 12:00
+
+
+## Zoom meeting
+
+We will use Zoom.
+
+You can connect to zoom:
+
+1. following this link: (https://grenoble-inp.zoom.us/j/96592180886?pwd=dWVWU1lSTlViWStWR2NRd0JZMzBvUT09)
+
+
+(and, if needed, install the zoom app).
+
+1. or you can start the Zoom app with the following information
+  + meeting ID: 965 9218 0886
+  + Password: ECO3
+
+## Class platforms
+
+We will use *Caseine*
+
+Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
+
+
+## Class material
+
+[Binary logistic](/Data-pdf/020_LogisticRegression_E3.pdf)
+
+[titanic4.RData](/Data-pdf/titanic4.RData)
+
+[Tab151.txt](/Data-pdf/Tab151.txt)
+
+### Supplementary material
+
+**Exercise GPA: ** [02_ex_GPA_V19.R](/Data-pdf/02_ex_GPA_V19.R)
+
+**Exercise Death Penalty: **[02_Allison_Penalty.R](/Data-pdf/02_Allison_Penalty.R)
+
+**Exercise Training Logistic regression: **[03_ex_Bin.R](/Data-pdf/03_ex_Bin.R)
+
+**Exercise Titanic: **[02.5_Titanic_Case_BinLogistic.R](/Data-pdf/02.5_Titanic_Case_BinLogistic.R)
+
+## Start of the Project 
+
+You can define the teams [Here](https://docs.google.com/spreadsheets/d/1Uxf_SjotuIQL4ZlF0r8_7ZaewL17Zmgbvzrh8h2OT70/edit#gid=0
+)
+You will find on [Caseine](https://moodle.caseine.org/course/view.php?id=346) the zip-archive of files needed for the project (inc. statement)
+
+[Here](/Data-pdf/EnonceTP_Eco3_2020.pdf) is the statement of the project
