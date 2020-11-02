@@ -50,6 +50,7 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
 **Exercise GPA: ** [02_ex_GPA_V19.R](/Data-pdf/02_ex_GPA_V19.R)
 
 **Exercise Death Penalty: **[02_Allison_Penalty.R](/Data-pdf/02_Allison_Penalty.R)
+and data [02_Penalty.txt](/Data-pdf/02_Penalty.txt)
 
 **Exercise Training Logistic regression: **[03_ex_Bin.R](/Data-pdf/03_ex_Bin.R)
 
