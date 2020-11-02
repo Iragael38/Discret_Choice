@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Exercice Penalty ALLISON</title>
+      <link>/post/2020-11-02-02_allison_penalty/</link>
+      <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020-11-02-02_allison_penalty/</guid>
+      <description>EXERCISE from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
+Les données sont décrites dans Allison (2010)
+Data set consists of 147 death penalty cases in the state of New Jersey.The defendant was convicted of first-degree murder with a recommendation by the prosecutor that a death sentence be imposed.</description>
+    </item>
+    
+    <item>
       <title>Fourth Lesson October 2020</title>
       <link>/post/2020-11-02-fourth-lesson-november-2020/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>

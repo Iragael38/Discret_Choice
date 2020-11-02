@@ -45,12 +45,16 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
 
 [Tab151.txt](/Data-pdf/Tab151.txt)
 
+
+## Exercise: Binary Logistic (@allison2010survival)
+
+- Initial R script: [02_Allison_Penalty.R](/Data-pdf/02_Allison_Penalty.R)
+- Data [02_Penalty.txt](/Data-pdf/02_Penalty.txt)
+- **Correction** of the exercise [02_Allison_Penalty.Rmd](/Data-pdf/2020-11-02-02_Allison_Penalty.Rmd)
+
 ### Supplementary material
 
 **Exercise GPA: ** [02_ex_GPA_V19.R](/Data-pdf/02_ex_GPA_V19.R)
-
-**Exercise Death Penalty: **[02_Allison_Penalty.R](/Data-pdf/02_Allison_Penalty.R)
-and data [02_Penalty.txt](/Data-pdf/02_Penalty.txt)
 
 **Exercise Training Logistic regression: **[03_ex_Bin.R](/Data-pdf/03_ex_Bin.R)
 

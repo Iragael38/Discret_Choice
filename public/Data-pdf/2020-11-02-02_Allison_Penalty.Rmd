@@ -1,0 +1,443 @@
+---
+title: "Exercice Penalty ALLISON"
+author: "I. Joly"
+date:  "`r Sys.Date()`"
+output: html_document
+fontsize: 11pt
+link-citations: yes
+biblio-style: apalike
+bibliography: ["02_biblio.bib"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# EXERCISE from Paul Allison : logistic regression using SAS, 2nd Ed.
+
+Dans cet exercice une attention particulière est donnée aux erreurs d'interprétations. Pour cela  la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
+
+Les données sont décrites dans @allison2010survival
+
+> Data set consists of 147 death penalty cases in the state of New Jersey. 
+The defendant was convicted of first-degree murder with a recommendation by the prosecutor that a death sentence be imposed. 
+
+> Then a penalty trial was conducted to determine whether the defendant would receive a sentence of death or life imprisonment. 
+
+>Our dependent variable DEATH is coded 1 for a death sentence, and 0 for a life sentence. 
+
+>The aim is to determine how this outcome was influenced by various characteristics of the defendant and the crime.
+
+## Chargement des données et packages
+
+```{r message=FALSE, warning=FALSE}
+library(psych)  # for summary stat
+library(gmodels)  # for xtable
+library(DescTools)  # for VIF multicolineartity
+library(arm)  # for bayesian estimation
+library(knitr)   # for outpout in kable
+library(arm)  # for bayesian estimation
+library(ResourceSelection)  # FOR hosmer&Lemeshow test
+
+# dataframe has to be present in the rmd folder
+DF <- read.csv(file = "02_Penalty.txt", sep = " ", dec = '.', header = T)
+```
+
+Les variables sont:
+
+- `DEATH` : 1 for death sentence / 0 for a life sentence
+- `BLACKD`: 1 if the defendant was black, otherwise 0
+- `WHITVIC`: 1 if the victim was white, otherwise 0
+- `SERIOUS`: a rating of the seriousness of the crime, as evaluated by a panel of four to six judges. (average rankings between 1(least serious)-15(most serious))[^1]
+
+[^1]: `SERIOUS` was developed in an auxiliary study in which panels of trial judges were given written descriptions of each of the crimes. These descriptions did not mention the race of the defendant or the victim
+
+- `CULP`: 5 denotes high culpability and 1 denotes low culpability, based on aggravating and mitigating circumstances)
+- `SERIOUS2`: a 5 points rating scale of the seriousness of the crime
+
+
+
+### Descriptive analysis
+
+
+```{r}
+psych::describe(DF)
+```
+
+On note que les variables ne comtiennent pas de valeurs inattendues (négatives ou hors des limites). Pour les variables qualitatives binaires, les moyennes donnent les proportions de 1 (pour `death`, `blackd`, etc.)
+
+La proportion de cas selon la couleur de peau est apriori la même. 
+
+Le tableau croisé est :
+
+```{r}
+# Objectives: model death
+CrossTable(DF$death, DF$blackd) 
+```
+On constate une différence de proportionS de sentence mortelle selon la couleur de peau (44% contre 56%).
+
+L'observation des proportions indiquent  $\frac{22}{52+22}=$ `r round(22/(52+22), 2) ` contre $\frac{28}{45+28}=$  `r round(28/(45+28), 2)`. Indiquant une proportion de la sentence mortelle plus forte pour les noirs.
+
+
+Le ratio des proportions de la sentence mortelle selon la couleur de peau est :$\frac{\frac{28}{45+28} }{  \frac{22}{52+22}}=$ `r round( (28/(45+28)) / (22/(52+22))   , 2)`
+
+La proportion de la sentence mortelle est 29% plus élevée pour les noirs.
+
+Les côtes (odds) sont, pour l'ensemble des cas : $\frac{50}{97}=$ •`r round(50/97, 3)` ; pour les noirs,  $\frac{28}{45}=$ •`r round(28/45, 3)` ; pour les blancs,  $\frac{22}{52}=$ •`r round(22/52, 3)` 
+
+l'Odd Ratio indique une côte de la sentence mortelle `r (round( (28/45)/ (22/52), 3)-1) * 100  ` plus élevée pour les noirs.
+
+Remarque: l'OR dans une table 2x2 peut être obtenu pour le ratio des produit croisé des diagonales $(52 × 28)/(22 × 45) = 1.47$.
+
+### Test du $\chisq$
+
+On peut tester la dépendance: l'idée que l'indépendance entre race et sentence n'est pas respectée.
+
+```{r}
+tab <- matrix(c(22,52,28,45),nrow=2,byrow=TRUE)
+prop.test(tab)
+```
+On ne rejette pas l'indépendance au seuil de risque de 10%.
+
+On peut en déduire l'intervalle de confiance de l'OR
+
+```{r}
+C.test <- prop.test(tab)
+odds <- C.test$estimate/(1-C.test$estimate)
+names(odds) <- c("Odd W", "Odd B")
+# OR
+theta <- odds[2]/odds[1]
+names(theta) <- c("Odd Ratio")
+ASE <- sqrt(sum(1/tab))
+# ASE
+ASE
+logtheta.CI <- log(theta) + c(-1,1)*1.96*ASE
+# IC log(theta)
+logtheta.CI
+# IC(OR)
+exp(logtheta.CI)
+# theta: OR
+theta
+```
+
+L'OR de la sentence mortelle est 47% plus élevée pour les noirs, mais au vu de l'intervalle de confiance, cet OR est non significatif.
+
+
+### Etude des cas en fonction de l'ethnie du coupable et de celle de la victime
+
+```{r  eval=T}
+mytable <- xtabs(~death+blackd+whitvic, data=DF)
+ftable(mytable) # print table
+summary(mytable) # chi-square test of indepedence 
+```
+
+La sentence semble associée aux ethnies.
+
+Une étude plus fine doit être réalisée avec une régression adaptée.
+Ici la régression binomiale logistique.
+
+### Régression linéaire - LPM
+
+Nous pouvons avant tout faire une régression linéaire...
+
+```{r}
+summary(OLS1 <- lm(death ~ blackd + whitvic, data=DF))
+plot(OLS1)
+```
+Tous les signes d'une régression linéaire défectueuse sont présents: peu de significativité, $R²$ faible, graphiques de diagnostique de la régression (hétéroscédasticité, non normalité, etc.)
+
+### Régression en fonction des ethnies
+
+```{r }
+#1rst model with blackd + whitvic 
+glm1 <- glm(  death ~ blackd + whitvic, 
+            data=DF, x = TRUE, 
+    family = binomial(link = "logit"))
+summary(glm1)
+```
+**Interprétation **
+#### Qualité d'ajustement
+
+Nous pouvons calculer les indicateurs usuels de la régression logistique
+
+
+```{r}
+n <- length(DF$death)
+#LogLikelihood
+logL_glm1 <- as.numeric(  logLik(glm1) )
+# LRI
+LRI_glm1<- 1-with(glm1,deviance/null.deviance)
+# AIC : −2log L + 2k
+AIC_glm1 <- -2*logL_glm1+2*length(coef(glm1))
+# BIC : −2log L + k log n
+BIC_glm1 <- -2*logL_glm1 + length(coef(glm1))+log(n)
+```
+
+le LRI: `r LRI_glm1`.
+Le modèle n'est pas performant. Le LRI étant au minimum 0.
+
+Le AIC: `r AIC_glm1`.
+
+On peut aussi étudier la qualité d'ajustement suite à l'introduction de chaque variable
+
+```{r}
+anova(glm1,test="Chisq")
+```
+
+Le modèle ne s'améliore pas avec l'introduction de ces 2 variables.
+
+### Régression en fonction des ethnies et la sévérité du crime
+
+```{r}
+glm2 <- glm(  death ~ blackd + whitvic + serious, 
+            data=DF, x = TRUE, 
+    family = binomial(link = "logit"))
+summary(glm2)
+```
+
+On constate un gain de qualité d'ajustement faible (resid. deviance - Null dev.) cohérent avec le fait qu'une seule variable est  signifactive.
+
+
+#### Qualité d'ajustement
+
+```{r}
+#LogLikelihood
+logL_glm2 <- as.numeric(  logLik(glm2) )
+# LRI
+LRI_glm2<- 1-with(glm2,deviance/null.deviance)
+# AIC : −2log L + 2k
+AIC_glm2 <- -2*logL_glm2+2*length(coef(glm2))
+# BIC : −2log L + k log n
+BIC_glm2 <- -2*logL_glm2 + length(coef(glm2))+log(n)
+```
+
+ 
+```{r}
+Fit_M1 <- c( logL_glm1 , LRI_glm1, AIC_glm1, BIC_glm1)
+Fit_M2 <- c( logL_glm2 , LRI_glm2, AIC_glm2, BIC_glm2)
+tableau_fit <- data.frame(rbind( Fit_M1, Fit_M2))
+names(tableau_fit) <- c( "Log_Lik", "LRI", "AIC", "BIC")
+kable(tableau_fit)
+```
+
+On observe une légère amélioration de l'ensemble des indicateurs de qualité d'ajustement. Il faudrait tester si cette différence est suffisante pour être significative.
+
+Le test suivant confirme la significativité de `Serious` et donc l'amélioration de l'ajustement.
+
+
+```{r}
+anova(glm2, test="Chisq")
+```
+
+#### Interprétation
+
+- la gravité des crimes est prépondérante et significative
+- tous les coefficients estimés sont positifs (comme attendu), mais seul `Serious` est  significatif
+- L'effet de `Serious` est de `r glm2$coefficients[4] ` sur la transformation logit de la probabilité de sentence mortelle.
+- On peut donner une interprétation quantifiée de l'effet de `Serious` par l'exponetielle : $exp(\beta_{Serious})=$`r exp(glm2$coefficients[4]) `. Il s'agit de l'effet sur le rapport de côtes (Odd ratio) pour une variation unitaire de `Serious`
+- On peut calculer les effets marginaux
+
+####  Effets marginaux au point moyen
+
+Remarque: @allison2010survival calcule les effets marginaux à partir du produit de  proportions $P \times (1-P)$ générale.
+
+```{r eval=T}
+# dp/dx = beta p(1-p)
+addmargins(table(DF$death,DF$blackd))
+p <- sum(DF$death==1)/length(DF$death)
+Mef <- p*(1-p) * coefficients(glm2)[-1]
+round(Mef , 3)
+```
+
+Ce qui diffère de la méthode de calcul des effets marginaux au point moyen que nous avons vu, c'est à dire avec une probabilité prédite pour le point moyen. 
+
+```{r}
+# marginal effects at mean
+# Logit # xb*:
+betas<-t(data.frame(coef(glm2))) ; betas
+xmean <- c(1, mean(DF$blackd), mean(DF$whitvic), mean(DF$serious))
+print("XBetas:")
+xb_logit <- sum(xmean*betas) ; xb_logit
+# Slopes (at mean): Lambda(mean(xb))*(b)
+print("Slopes:")
+logit_slopes <- dlogis(xb_logit)*betas
+logit_slopes
+```
+
+Les différences entre les deux méthodes sont réduites
+
+Les effets marginaux pour les variables binaires sont non significatifs.
+
+Pour `Serious` la probabilité de la sentence mortelle augmente de 0.04 `r logit_slopes` par variation unitaire.
+
+Remarque: Attention,  `Serious` est traitée ici comme une variable quantitative ! alors qu'il s'agit d'un rang moyen attribué. Traiter cette variable comme une qualitative (ou catégorielle) - en factor sous R - sera plus cohérent et plus juste.
+
+
+## Modèle avec le facteur factor: `culp` et niveau de référence: `reflevel:5`
+
+```{r}
+DF$culp <- factor(DF$culp)
+DF$culp = relevel(DF$culp, ref=5)
+
+glm3 <- glm(death ~ blackd + whitvic + culp, data=DF, x = TRUE, 
+            family = binomial(link = "logit"))
+summary(glm3)
+```
+
+#### Qualité d'ajustement
+
+
+```{r}
+#LogLikelihood
+logL_glm3 <- as.numeric(  logLik(glm3) )
+# LRI
+LRI_glm3<- 1-with(glm3,deviance/null.deviance)
+# AIC : −2log L + 2k
+AIC_glm3 <- -2*logL_glm3+2*length(coef(glm3))
+# BIC : −2log L + k log n
+BIC_glm3 <- -2*logL_glm3 + length(coef(glm3))+log(n)
+```
+
+ 
+```{r}
+Fit_M3 <- c( logL_glm3 , LRI_glm3, AIC_glm3, BIC_glm3)
+tableau_fit <- data.frame(rbind( Fit_M1, Fit_M2, Fit_M3))
+names(tableau_fit) <- c( "Log_Lik", "LRI", "AIC", "BIC")
+kable(tableau_fit)
+```
+
+On observe une nette amélioration du modèle.
+
+#### Interprétation
+
+- *Significativité*: bonne pour les var explicatives: `blackd` et `cupl` avec un niveau $< 4$
+- `blackd` augmente la probabilité (ou le risque) de peine de mort (signe positif du coeff. estimé)
+- `culp`: plus la culpabilité est faible (niveau 1 de `culp`) moins  le risque de peine de mort est élevé. 
+
+- remarque: la significativité changeante de `blackd` est suspecte. C'est souvent l'indice de faible robustesse du résultat associée à cette variable.
+
+### Modèle avec `culp` seul
+
+On simplifie ici la régression pour mieux comprendre comment interpréter l'effet de cette variable catégorielle.
+
+```{r  eval=T}
+glm3.2 <- glm(death ~ culp, data=DF, x = TRUE, 
+            family = binomial(link = "logit"))
+summary(glm3.2)
+```
+L'estimation se fait en fonction de la modalité de référence : `culp`=5. La transformation logit de la probabilité de la sentence est donnée par l'`intercept`.
+
+Les probabilités estimées pour chaque modalité de `pulp`sont ainsi les suivantes :
+```{r}
+exp(glm3.2$coefficients[1])
+p5 <- 1/( 1+ exp( - glm3.2$coefficients[1]) )
+p1 <- 1/( 1+ exp(- (glm3.2$coefficients[1] + glm3.2$coefficients[2])) )
+p2 <- 1/( 1+ exp(- (glm3.2$coefficients[1] + glm3.2$coefficients[3])) )
+p3 <- 1/( 1+ exp(- (glm3.2$coefficients[1] + glm3.2$coefficients[4])) )
+p4 <- 1/( 1+ exp(- (glm3.2$coefficients[1] + glm3.2$coefficients[5])) )
+prob <- c( p1:p5)
+
+tableau_prob <- data.frame(cbind( p1,p2,p3,p4,p5))
+names(tableau_prob) <- c( "culp1","culp2","culp3","culp4" , "culp5"  )
+kable( tableau_prob)
+```
+
+
+## Modèle avec variable croisée
+
+On estime maintenant un modèle en introduisant la variable `blackd * whitvic` de façon à pointer les cas où la victime est blanche et le coupable noir. Un coefficient significatif et positif indiquerait des cas où la sentence est plus dure en fonction de l'ethnie des individus.
+
+```{r }
+glm4 <- glm(death ~ blackd * whitvic + culp, data=DF, x = TRUE, 
+            family = binomial(link = "logit"))
+summary(glm4)
+```
+
+Cette variable croisée n'est pas significative. Cette configuration particulière ne semble pas associée à un risque de sentence plus fort ou plus faible.
+
+
+
+## Extensions
+
+### Multicolinearity Diag
+
+La multicolinéarité peut être détectée avec le calcul du facteur d'inflation de la variance des estimateurs (VIF)
+
+Une valeur de $VIF >5$ est le signe d'une multicolinéarité forte.
+
+```{r}
+library(DescTools)
+VIF(glm(death ~ blackd + whitvic + culp + serious, data=DF, x = TRUE, 
+        family = binomial(link = "logit")))
+```
+
+
+
+### Extreme s.e.
+La faible taille de l'échantillon peut condurie à des problèmes de convergences et de qualité d'estiamtion des écarts-types "extrem s.e."
+
+Voir la discussion (https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression)
+
+Pour voir cela on réduit la base de données aux seuls accusés blancs
+
+```{r}
+glm5 <- glm(death ~ culp + serious, data=DF[DF$blackd==0,], x = TRUE, family = binomial(link = "logit"))
+summary(glm5)
+```
+L'écart-type de `culp` explose car il y a un problème de séparation. Certaines modalités de `culp` n'ont pas de cas de sentence mortelle.
+
+```{r}
+addmargins(table(DF[DF$blackd==0,]$death,DF[DF$blackd==0,]$culp))
+```
+
+Pour remédirer à cela une solution est l'estimation bayésienne :
+
+
+```{r}
+fit <- bayesglm(death ~ culp + serious, data=DF, family="binomial", prior.df=5)
+display(fit)
+```
+
+Dans une estimation on suppose a priori la distribution des coefficients estimés pour ensuite l'ajuster et en déduite la distribution a pesteriori.
+La loi des coefficients peut être choisie comme une loi normale. Ici la spécification du nombre de degrés de liberté de la loi conduit à une loi normale (`prior.df=Inf`) ou une Student (`prior.df=7`)   ou Cauchy (`prior.df=1`)
+
+```{r}
+fit.2 <- bayesglm(death ~ culp + serious, data=DF, family="binomial", prior.scale=2.5, prior.df=Inf)  # normal prior with scale 2.5 : prior.df=Inf for normal
+display(fit.2)
+```
+
+### Test de la qualité d'ajustement
+
+Le test d'Hosmer et Lemeshow peut être utiliser pour déterminer s'il y a une différence significative entre les proportions prédites et les proportions observées.
+
+C'est un test de qualité globale du modèle. On veut savoir s'il "reproduit" l'observation.
+
+Pour ce calcul le test prédit les probabilités pour chaque observation et construit le tableau des proportions.
+
+Les hypothèses sont:
+$H_0$: les taux d'évènement prédits et ceux observés sont similaire entre 10 déciles
+$H_1$: Ils ne sont pas identiques
+
+Remarque on trouve une version améliorée de ce test : Hosmer et al have a better one d.f. omnibus test of fit, implemented in the R `rms` package `residuals.lrm` function.
+
+
+
+```{r}
+
+glm5 <- glm(death ~ blackd+ culp + serious, data=DF, x = TRUE, family = binomial(link = "logit"))
+
+hl <- hoslem.test(glm3$y, fitted(glm3), g=5) # choose: g>p+1
+hl
+```
+
+On rejette l'hypothèse de similarité entre les vecteurs de proportions comparés : le modèle ne reproduit pas suffisament les observations.
+
+
+### Calcul automatique des indicateurs de qualité d'ajustement
+
+La fonction `PseudoR2()` produit de nombreux indicateurs sont ceux que nous venons de déterminer.
+
+```{r}
+PseudoR2(glm5, which="all")
+```
+
