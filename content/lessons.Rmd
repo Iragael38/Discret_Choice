@@ -12,18 +12,31 @@ authorbox: false
 
 This is the website of the Lesson **Discret Choice Modelling** taught at Grenoble UGA.
 
-## First Lesson - 05/10/2020 - 9:00 - 12:00
+## Fifth Lesson - 16/11/2020 - 9:00 - 12:00
 
-Welcome page of [First Lesson](../post/2020-10-05-first-lesson-october-2020)
+Material for the [Fifth Lesson](../post/2020-11-13-fifth-lesson) 
 
-## Second Lesson - 12/10/2020 - 9:00 - 12:00
 
-Material for the [Second Lesson](../post/2020-10-12-second-lesson-october-2020) 
+***
+
+## Fourth Lesson - 02/11/2020 - 9:00 - 12:00
+
+Material for the [Fourth Lesson](../post/2020-11-02-fourth-lesson-november-2020) 
+
+***
 
 ## Third Lesson - 19/10/2020 - 9:00 - 12:00
 
 Material for the [Third Lesson](../post/2020-10-19-third-lesson-october-2020) 
 
-## Fourth Lesson - 02/11/2020 - 9:00 - 12:00
+***
 
-Material for the [Fourth Lesson](../post/2020-11-02-fourth-lesson-november-2020) 
+## Second Lesson - 12/10/2020 - 9:00 - 12:00
+
+Material for the [Second Lesson](../post/2020-10-12-second-lesson-october-2020) 
+
+***
+
+## First Lesson - 05/10/2020 - 9:00 - 12:00
+
+Welcome page of [First Lesson](../post/2020-10-05-first-lesson-october-2020)

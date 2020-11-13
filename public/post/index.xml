@@ -1,33 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Discret Choice Modelling Lesson</title>
-    <link>/post/</link>
+    <link>https://discretchoicemodelling.netlify.app/post/</link>
     <description>Recent content in Posts on Discret Choice Modelling Lesson</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Nov 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 13 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://discretchoicemodelling.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fifth-lesson</title>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</link>
+      <pubDate>Fri, 13 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</guid>
+      <description>Fifth LessonWelcome to the fifth lesson - 16/11/2020 9:00 - 12:00
+Zoom meetingWe will use Zoom.
+You can connect to zoom:
+following this link: (https://grenoble-inp.zoom.us/j/99257491674?pwd=YUhJTTRhaWt1NWp0d2doNzh0c0hUUT09)(and, if needed, install the zoom app).
+or you can start the Zoom app with the following informationmeeting ID: 992 5749 1674Password: ECO3Class platformsWe will use Caseine
+Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)</description>
+    </item>
     
     <item>
       <title>Exercice Penalty ALLISON</title>
-      <link>/post/2020-11-02-02_allison_penalty/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-02-02_allison_penalty/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-11-02-02_allison_penalty/</guid>
-      <description>EXERCISE from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-02-02_allison_penalty/</guid>
+      <description>EXERCISE inspired from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
 Les données sont décrites dans Allison (2010)
 Data set consists of 147 death penalty cases in the state of New Jersey.The defendant was convicted of first-degree murder with a recommendation by the prosecutor that a death sentence be imposed.</description>
     </item>
     
     <item>
       <title>Fourth Lesson October 2020</title>
-      <link>/post/2020-11-02-fourth-lesson-november-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-02-fourth-lesson-november-2020/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-11-02-fourth-lesson-november-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-02-fourth-lesson-november-2020/</guid>
       <description>Fourth LessonWelcome to the fourth lesson - 02/11/2020 9:00 - 12:00
 Zoom meetingWe will use Zoom.
 You can connect to zoom:
@@ -39,10 +49,10 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
     
     <item>
       <title>Project Page</title>
-      <link>/post/2020-11-02-project-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-02-project-2020/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-11-02-project-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-02-project-2020/</guid>
       <description>Project PageStart of the ProjectYou can define the teams Here
 You will find on Caseine the zip-archive of files needed for the project (inc. statement)
 Here is the statement of the project
@@ -51,10 +61,10 @@ Here is the statement of the project
     
     <item>
       <title>Third Lesson October 2020</title>
-      <link>/post/2020-10-19-third-lesson-october-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-10-19-third-lesson-october-2020/</link>
       <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-10-19-third-lesson-october-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-10-19-third-lesson-october-2020/</guid>
       <description>Third LessonWelcome to the third lesson - 19/10/2020 9:00 - 12:00
 Zoom meetingWe will use Zoom.
 You can connect to zoom:
@@ -66,10 +76,10 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
     
     <item>
       <title>Second Lesson October 2020</title>
-      <link>/post/2020-10-12-second-lesson-october-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-10-12-second-lesson-october-2020/</link>
       <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-10-12-second-lesson-october-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-10-12-second-lesson-october-2020/</guid>
       <description>Second LessonWelcome to the second lesson - 12/10/2020 9:00 - 12:00
 Zoom meetingWe will use Zoom.
 You can connect to zoom:
@@ -80,26 +90,14 @@ I (Iragaël Joly) will try to maintain this blog as a plateform to merge all inf
     
     <item>
       <title>First Lesson October 1rst 2020</title>
-      <link>/post/2020-10-05-first-lesson-october-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-10-05-first-lesson-october-2020/</link>
       <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-10-05-first-lesson-october-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-10-05-first-lesson-october-2020/</guid>
       <description>First LessonWelcome to the first lesson - 05/10/2020 9:00 - 12:00
 IntroductionThese Introduction slides present:
 Table of contents
 IntroductionProgramMotivationsImportance of DCMCourse ObjectivesGeneral Context of Choice analysisFour broad frameworksSample and MeasurementIssues in Model BuildingR and Tests for Categorical DataInference for a (Single) ProportionTwo-Way Contingency TablesThe Odds-RatioChi-Squared Tests of IndependenceZoom meetingWe will use Zoom.</description>
-    </item>
-    
-    <item>
-      <title>Some tricks</title>
-      <link>/post/sometricks-draft/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/sometricks-draft/</guid>
-      <description>In Yalmmenu: mainsidebar: falseauthorbox: falseBlockquoteUse previos line.
-for empty newlines
-you can even blockquote CODE by prefixing with &amp;gt;
-</description>
     </item>
     
   </channel>

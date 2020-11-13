@@ -1,33 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Discret Choice Modelling on Discret Choice Modelling Lesson</title>
-    <link>/</link>
+    <link>https://discretchoicemodelling.netlify.app/</link>
     <description>Recent content in Discret Choice Modelling on Discret Choice Modelling Lesson</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Nov 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 13 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://discretchoicemodelling.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fifth-lesson</title>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</link>
+      <pubDate>Fri, 13 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</guid>
+      <description>Fifth LessonWelcome to the fifth lesson - 16/11/2020 9:00 - 12:00
+Zoom meetingWe will use Zoom.
+You can connect to zoom:
+following this link: (https://grenoble-inp.zoom.us/j/99257491674?pwd=YUhJTTRhaWt1NWp0d2doNzh0c0hUUT09)(and, if needed, install the zoom app).
+or you can start the Zoom app with the following informationmeeting ID: 992 5749 1674Password: ECO3Class platformsWe will use Caseine
+Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)</description>
+    </item>
     
     <item>
       <title>Exercice Penalty ALLISON</title>
-      <link>/post/2020-11-02-02_allison_penalty/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-02-02_allison_penalty/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-11-02-02_allison_penalty/</guid>
-      <description>EXERCISE from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-02-02_allison_penalty/</guid>
+      <description>EXERCISE inspired from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
 Les données sont décrites dans Allison (2010)
 Data set consists of 147 death penalty cases in the state of New Jersey.The defendant was convicted of first-degree murder with a recommendation by the prosecutor that a death sentence be imposed.</description>
     </item>
     
     <item>
       <title>Fourth Lesson October 2020</title>
-      <link>/post/2020-11-02-fourth-lesson-november-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-02-fourth-lesson-november-2020/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-11-02-fourth-lesson-november-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-02-fourth-lesson-november-2020/</guid>
       <description>Fourth LessonWelcome to the fourth lesson - 02/11/2020 9:00 - 12:00
 Zoom meetingWe will use Zoom.
 You can connect to zoom:
@@ -39,10 +49,10 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
     
     <item>
       <title>Project Page</title>
-      <link>/post/2020-11-02-project-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-11-02-project-2020/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-11-02-project-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-11-02-project-2020/</guid>
       <description>Project PageStart of the ProjectYou can define the teams Here
 You will find on Caseine the zip-archive of files needed for the project (inc. statement)
 Here is the statement of the project
@@ -51,10 +61,10 @@ Here is the statement of the project
     
     <item>
       <title>Third Lesson October 2020</title>
-      <link>/post/2020-10-19-third-lesson-october-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-10-19-third-lesson-october-2020/</link>
       <pubDate>Mon, 19 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-10-19-third-lesson-october-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-10-19-third-lesson-october-2020/</guid>
       <description>Third LessonWelcome to the third lesson - 19/10/2020 9:00 - 12:00
 Zoom meetingWe will use Zoom.
 You can connect to zoom:
@@ -66,10 +76,10 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
     
     <item>
       <title>Second Lesson October 2020</title>
-      <link>/post/2020-10-12-second-lesson-october-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-10-12-second-lesson-october-2020/</link>
       <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-10-12-second-lesson-october-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-10-12-second-lesson-october-2020/</guid>
       <description>Second LessonWelcome to the second lesson - 12/10/2020 9:00 - 12:00
 Zoom meetingWe will use Zoom.
 You can connect to zoom:
@@ -80,10 +90,10 @@ I (Iragaël Joly) will try to maintain this blog as a plateform to merge all inf
     
     <item>
       <title>First Lesson October 1rst 2020</title>
-      <link>/post/2020-10-05-first-lesson-october-2020/</link>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-10-05-first-lesson-october-2020/</link>
       <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-10-05-first-lesson-october-2020/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-10-05-first-lesson-october-2020/</guid>
       <description>First LessonWelcome to the first lesson - 05/10/2020 9:00 - 12:00
 IntroductionThese Introduction slides present:
 Table of contents
@@ -92,20 +102,20 @@ IntroductionProgramMotivationsImportance of DCMCourse ObjectivesGeneral 
     
     <item>
       <title></title>
-      <link>/recordings/</link>
+      <link>https://discretchoicemodelling.netlify.app/recordings/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/recordings/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/recordings/</guid>
       <description>RecordingsRecordings of the lessons are accessible on GoogleDrive
 </description>
     </item>
     
     <item>
       <title></title>
-      <link>/welcome/</link>
+      <link>https://discretchoicemodelling.netlify.app/welcome/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/welcome/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/welcome/</guid>
       <description>WelcomeThis is the welcome page
 You find here
 lesson materials description and abstractlinks to the Caseine Platformuse of the postsdescription of the evaluationreferencesand other things…Lessons planningEach lesson is described as follows
@@ -114,42 +124,42 @@ You find here
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://discretchoicemodelling.netlify.app/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/about/</guid>
       <description>Description of the courseEnseignant :Iragaël Joly 1, MCF HDR, Grenoble INP Génie industrielContenu :L’objectif du cours est de présenter et appliquer les méthodes économétriques de modélisations des variables qualitatives et des choix discrets. Les premières sont adaptées pour modéliser des outcomes qualitatifs ordonnés ou non (par ex : modèles logit et probit). Les modèles de choix discrets sont utilisés pour l’étude désagrégée des comportements individuels de consommation et l’étude de la demande.</description>
     </item>
     
     <item>
       <title>Discret Choice Modelling</title>
-      <link>/lesson_1/</link>
+      <link>https://discretchoicemodelling.netlify.app/lesson_1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/lesson_1/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/lesson_1/</guid>
       <description>This is the 1rst Lesson Discrete Choice Modelling
 PDF</description>
     </item>
     
     <item>
       <title>Discret Choice Modelling</title>
-      <link>/lessons/</link>
+      <link>https://discretchoicemodelling.netlify.app/lessons/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/lessons/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/lessons/</guid>
       <description>Lessons listThis is the website of the Lesson Discret Choice Modelling taught at Grenoble UGA.
-First Lesson - 05/10/2020 - 9:00 - 12:00Welcome page of First Lesson
-Second Lesson - 12/10/2020 - 9:00 - 12:00Material for the Second Lesson
+Fifth Lesson - 16/11/2020 - 9:00 - 12:00Material for the Fifth Lesson
+Fourth Lesson - 02/11/2020 - 9:00 - 12:00Material for the Fourth Lesson
 Third Lesson - 19/10/2020 - 9:00 - 12:00Material for the Third Lesson
-Fourth Lesson - 02/11/2020 - 9:00 - 12:00Material for the Fourth Lesson</description>
+Second Lesson - 12/10/2020 - 9:00 - 12:00Material for the Second Lesson</description>
     </item>
     
     <item>
       <title>Introduction to Reproducible Analysis</title>
-      <link>/lessons_list/lesson_0.1_reproducibleresearch/</link>
+      <link>https://discretchoicemodelling.netlify.app/lessons_list/lesson_0.1_reproducibleresearch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/lessons_list/lesson_0.1_reproducibleresearch/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/lessons_list/lesson_0.1_reproducibleresearch/</guid>
       <description>Reproducible AnalysisTypical data analysis workflow looks like this:
 collect dataput it in a file or spreadsheet or databaserun some analyses, written in various scripts,perhaps saving some intermediate results along the wayor maybe always working on the raw data.create some plots or tables of relevant summaries of the data,and then
 go and write a report about the results in a text editor or word processor.</description>
@@ -157,10 +167,10 @@ go and write a report about the results in a text editor or word processor.</des
     
     <item>
       <title>Other Lessons list</title>
-      <link>/otherlessons/</link>
+      <link>https://discretchoicemodelling.netlify.app/otherlessons/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/otherlessons/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/otherlessons/</guid>
       <description>Here are links to other lessons I have pushed online
 Basic Economics for IEM
 Discrete Choice Modelling
@@ -169,25 +179,13 @@ Smart Analytics for Big Data</description>
     
     <item>
       <title>References</title>
-      <link>/references/</link>
+      <link>https://discretchoicemodelling.netlify.app/references/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/references/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/references/</guid>
       <description>Softwares InstallationR and RStudioLateX edition: MikteXIntroduction to R and StatisticsIntroductory Statistics with R, Peter Dalgaard, Caseine Link
 Introduction to Statistical Learning with Applications in R, Gareth James, Daniela Witten, Trevor Hastie and Robert, Tibshirani website
 Introduction to RMarkdownRMarkdown Cheatsheet pdfR Markdown: The Definitive Guide, Yihui Xie, J. J. Allaire, Garrett Grolemund (access the bookdown)[https://bookdown.org/yihui/rmarkdown/]Agresti, A.</description>
-    </item>
-    
-    <item>
-      <title>Some tricks</title>
-      <link>/post/sometricks-draft/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/sometricks-draft/</guid>
-      <description>In Yalmmenu: mainsidebar: falseauthorbox: falseBlockquoteUse previos line.
-for empty newlines
-you can even blockquote CODE by prefixing with &amp;gt;
-</description>
     </item>
     
   </channel>

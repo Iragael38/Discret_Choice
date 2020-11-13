@@ -1,121 +1,122 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/categories/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/tags/lesson/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/categories/lesson/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/tags/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-02-02_allison_penalty/</loc>
     <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-02-fourth-lesson-november-2020/</loc>
     <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2020-11-02-02_allison_penalty/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-02-project-2020/</loc>
     <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2020-11-02-fourth-lesson-november-2020/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/lesson/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/lesson/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2020-11-02-project-2020/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2020-10-19-third-lesson-october-2020/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-10-19-third-lesson-october-2020/</loc>
     <lastmod>2020-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2020-10-12-second-lesson-october-2020/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-10-12-second-lesson-october-2020/</loc>
     <lastmod>2020-10-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2020-10-05-first-lesson-october-2020/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-10-05-first-lesson-october-2020/</loc>
     <lastmod>2020-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/recordings/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/recordings/</loc>
   </url>
   
   <url>
-    <loc>/welcome/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/welcome/</loc>
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/about/</loc>
   </url>
   
   <url>
-    <loc>/lesson_1/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/lesson_1/</loc>
   </url>
   
   <url>
-    <loc>/lessons/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/lessons/</loc>
   </url>
   
   <url>
-    <loc>/lessons_list/lesson_0.1_reproducibleresearch/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/lessons_list/lesson_0.1_reproducibleresearch/</loc>
   </url>
   
   <url>
-    <loc>/lessons_list/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/lessons_list/</loc>
   </url>
   
   <url>
-    <loc>/otherlessons/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/otherlessons/</loc>
   </url>
   
   <url>
-    <loc>/tags/plot/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/tags/plot/</loc>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/categories/r/</loc>
   </url>
   
   <url>
-    <loc>/tags/r-markdown/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/tags/r-markdown/</loc>
   </url>
   
   <url>
-    <loc>/references/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/references/</loc>
   </url>
   
   <url>
-    <loc>/tags/regression/</loc>
-  </url>
-  
-  <url>
-    <loc>/post/sometricks-draft/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/tags/regression/</loc>
   </url>
   
 </urlset>

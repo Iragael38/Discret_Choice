@@ -13,7 +13,7 @@ bibliography: ["data/02_biblio.bib"]
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# EXERCISE from Paul Allison : logistic regression using SAS, 2nd Ed.
+# EXERCISE inspired from Paul Allison : logistic regression using SAS, 2nd Ed.
 
 Dans cet exercice une attention particulière est donnée aux erreurs d'interprétations. Pour cela  la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives. 
 
@@ -92,7 +92,7 @@ l'Odd Ratio indique une côte de la sentence mortelle `r (round( (28/45)/ (22/52
 
 Remarque: l'OR dans une table 2x2 peut être obtenu pour le ratio des produit croisé des diagonales $(52 × 28)/(22 × 45) = 1.47$.
 
-### Test du $\chisq$
+### Test du $\chi^2$
 
 On peut tester la dépendance: l'idée que l'indépendance entre race et sentence n'est pas respectée.
 

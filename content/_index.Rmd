@@ -17,7 +17,7 @@ nocite: |
 
 - 02 nov: correction of the allison exercise : you can acces the Rmd file : [02_Allison_Penalty.Rmd](/Data-pdf/2020-11-02-02_Allison_Penalty.Rmd)
 and the page of the [exercise](../post/2020-11-02-02_Allison_Penalty) 
-- 29 oct: start of the [project](../post/2020-11-02-Project-2020) 
+- 29 oct: start of the [project](../post/2020-11-02-project-2020) 
 - 29 oct: fourth lesson [link](../post/2020-11-02-fourth-lesson-november-2020) 
 
 This is the welcome page
