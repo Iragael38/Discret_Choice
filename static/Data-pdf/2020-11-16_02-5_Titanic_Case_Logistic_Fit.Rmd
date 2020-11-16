@@ -1,0 +1,171 @@
+---
+title: "Titanic Binary Logistic"
+subtitle: "Fit and Inference"
+author: "I Joly"
+date: "16/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+library(knitr)
+```
+
+
+Cet exercice a été adapté durant le cours du 16 nov. 2020 pour discuter de l'inférence et de la qualité des ajustements dans la régression logistique.
+
+# Titanic Case Study - (source: F.E. Harrel, (2015), Regression Modeling Strategies, 2nd Ed., Springer, chap. 12)
+
+> This case study demonstrates the development of a binary logistic regression
+model to describe patterns of survival in passengers on the Titanic, based on
+passenger age, sex, ticket class, and the number of family members accompanying each passenger. 
+
+> Titanic passenger data were gathered by many researchers. Primary references are the Encyclopedia Titanica at (www.encyclopedia-titanica.org) and Eaton andHaas.
+
+> Titanic survival patterns have been analyzed previously but without incorporation of individual passenger ages. Thomas Cason while
+a University of Virginia student compiled and interpreted the data from the World Wide Web. 
+
+
+## Loading
+
+```{r eval=T}
+require(rms)
+load('titanic4.RData')
+```
+
+We truncate the distribution of `sibsp` and `parch` at 3 (more than 3 spouses or more than 3 children)
+Missing values are noticeable for `age`.
+
+## Descriptive Statistics
+
+
+```{r fig.height=10}
+dd <-  datadist(titanic4)    # describe distributions of variables to rms
+options(datadist = 'dd' )
+s <-  summary(survived ∼ age + sex + pclass + cut2(sibsp ,0:3) + cut2(parch ,0:3), data =titanic4)
+plot(s, main = ' ' , subtitles =FALSE ) # Figure 12.1
+```
+
+
+Nous pouvons dresser quelques **hypothèses** à partir de ce graphique.
+
++ L'âge a été découpé en classes (pour faciliter la représentation). Aucune tendance forte n'apparaît (hausse ou baisse du taux de survie). Les écarts de taux de survie en tre classe sont faibles. La variable ne devrait pas être significative.
++ les femmes survivent nettement mieux que les hommes. 
++ Les passagers en  classe (au premier niveau du bateau) peuvent plus survivent mieux que les classes inférieures
++ Nombre d'enfants: pas d'effet monotone sur le taux de survie. mais des taux de survie différents. 
++ Nombre de parents par enfant: aucun effet monotone mais là encore des taux nettement différents.
+
+***
+
+> To study show four-way empirical relationships with the fraction of surviving passengers by creating four cells for `sibsp × parch` combinations and by creating two age groups.
+We suppress proportions based on less than 25 passengers.
+ 
+> Last 2 variables have non-monotonic effects.
+
+
+## Non parametric exploration
+
+Nous créons ici 2 variables `sibsp` et `parch` comme des variables binaires: parents sans enfant et enfants sans parent.
+
+Cela constitue la nouvelle base `tn`
+
+```{r}
+tn <-  transform (titanic4 ,
+  agec = ifelse(age < 21, ' child ' , ' adult ' ),
+  sibsp = ifelse(sibsp == 0, ' no sib/sp ' , ' sib/sp ' ),
+  parch = ifelse(parch == 0, ' no par/child ' , ' par/child ' ))
+g <-  function(y) if(length (y) < 25) NA else mean(y)
+s <-  with(tn , summarize (survived , llist(agec , sex , pclass , sibsp , parch ), g))
+# llist , summarize in Hmisc package
+# Figure 12.2:
+ggplot(subset(s, agec != ' NA ' ),
+aes(x=survived , y=pclass , shape =sex)) +
+geom_point() + facet_grid(agec ∼ sibsp * parch ) +
+xlab( ' Proportion Surviving ' ) + ylab( ' Passenger Class ') +
+scale_x_continuous(breaks =c(0, .5 , 1))
+```
+
+> Effects of `sibsp` and `parch` seem small on absolute risk.
+
+```{r}
+# Figure 12.3
+b <-  scale_size_discrete(range =c(.1 , .85))
+yl <-  ylab(NULL)
+p1 <-  ggplot(titanic4 , aes(x=age , y=survived )) +
+  histSpikeg(survived ∼ age , lowess =TRUE , data =titanic4) + 
+  ylim (0,1) + yl
+p2 <-  ggplot(titanic4 , aes(x=age , y=survived , color =sex)) +
+  histSpikeg (survived ∼ age + sex , lowess =TRUE ,data =titanic4) + ylim (0,1) +
+  yl
+p3 <-  ggplot(titanic4 , aes(x=age , y=survived , size =pclass )) + 
+  histSpikeg (survived ∼ age + pclass , lowess =TRUE, data =titanic4) + 
+  b + ylim (0,1) + yl
+p4 <-  ggplot(titanic4) +
+  histSpikeg (survived ∼ age + sex + pclass, lowess =TRUE , data =titanic4) + 
+  b + ylim (0,1) + yl
+gridExtra::grid.arrange(p1 , p2 , p3 , p4 , ncol =2) # combine 4
+```
+
+> Nonparametric regression (loess) estimates of the relationship between
+age and the probability of surviving the Titanic, with tick marks depicting the age
+distribution. The top left panel shows unstratified estimates of the probability of
+survival. Other panels show nonparametric estimates by various stratifications
+
+> Figure shows much of the story of passenger survival patterns."Women and children first" seems to be true except for women in third class. It is
+interesting that there is no real cutoff for who is considered a child. For men, the younger the greater chance of surviving. The interpretation of the effects of the "number of relatives"-type variables will be more difficult, as their definitions are a function of age. Figure 12.4 shows these relationships.
+
+
+```{r}
+top <-  theme(legend.position = ' top ' )
+p1 <-  ggplot(titanic4 , aes(x=age , y=survived , color =cut2(sibsp , 0:2))) + 
+  stat_plsmo() + b + ylim(0,1) + yl + top + 
+  scale_color_discrete(name= ' siblings /spouses ' )
+
+p2 <-  ggplot(titanic4 , aes(x=age , y=survived , color =cut2(parch , 0:2))) + 
+  stat_plsmo() + b + ylim(0,1) + yl + top + 
+  scale_color_discrete(name= ' parents/children ' )
+gridExtra::grid.arrange(p1 , p2 , ncol =2)
+```
+
+## Logistic regression with `glm()`
+
+Nous réalisons la régression `survived ∼ sex+pclass +age +sibsp + parch`, sur les deux versions des données:
+
+1. `tn`: où les deux variables `sibsp` et `parch` sont binaires (avec ou sans enfants (ou parents))
+1. `titanic4` où les variables `sibsp` et `parch` sont les variables numériques d'origine: le nombre d'enfants ou de parents
+
+Ainsi, nous testons et comparons les deux modèles qui ne diffèrent que pas la façon dont `sibsp` et `parch` sont intégrées dans le modèle (binaire ou numérique).
+
+```{r}
+logit_tn <- glm(data=tn, survived ∼ sex+pclass +age +sibsp + parch, x = TRUE,
+             family = binomial(link = "logit"))
+summary(logit_tn)
+exp(coefficients(logit_tn))
+
+logit_t4 <- glm(data=titanic4, survived ∼ sex+pclass +age +sibsp + parch, x = TRUE,
+             family = binomial(link = "logit"))
+summary(logit_t4)
+```
+
+Les deux modèles donnent des résultats stables pour toutes les variables sauf `sibsp` et `parch`. Pour ces deux variables le format de variable impacte la significativité et la valeur des coefficients estimés. 
+
+Mais pour les autres coefficients les coefficients estimés et les écart-types sont similaires.
+
+On voit que l'AIC est plus faible - meilleur - pour le second modèle. Il s'agit donc du meilleur des deux modèles au sens de l'AIC. Mais l'écart d'AIC n'est pas très élevé. On pourra réfléchir à l'intérêt de cette version du modèle par rapport à la précédente plus simple à interpréter. La transformation en variables binaires réduit l'information diosponible mais facilité l'interprétation. Notamment le fait d'introduire les deux variables `sibsp` et `parch`de façon numérique n'est pas cohérent avec l'observation d'un effet non monotone sur le taux de survie.
+
+
+```{r}
+LR_tn<-with(logit_tn,deviance/null.deviance) # -2 cancels out
+LRI_tn<-1-LR_tn    ;   LRI_tn
+
+LR_t4<-with(logit_t4,deviance/null.deviance) # -2 cancels out
+LRI_t4<-1-LR_t4    ;   LRI_t4
+```
+
+En étudiant les déviances et les $R^2$ de McFadden (ou LRI), nous avons la même interprétation: le second modèle est meilleur: le $R^2$ de McFadden est plus élevé `r LRI_t4`.
+
+On note notamment le niveau de $-2 \times log(L_0)$ du modèle *null* commun aux deux modèles. En effet il s'agit pour ces deux modèles de la version où seule l'intercept est présente. Ce niveau de déviance sert de référence dans le calcul des qualités d'ajustement (dont le LRI, au dénominateur).
+
+
+
+

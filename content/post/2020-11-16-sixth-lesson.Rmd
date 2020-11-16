@@ -1,0 +1,51 @@
+---
+title: Sixth Lesson
+author: ''
+date: '2020-11-16'
+slug: []
+categories:
+  - Lesson
+tags:
+  - Lesson
+description: ''
+thumbnail: ''
+---
+
+
+Welcome to the Sixth lesson - 23/11/2020 9:00 - 12:00
+
+
+## Zoom meeting
+
+We will use Zoom.
+
+You can connect to zoom:
+
+1. following this link: (https://grenoble-inp.zoom.us/j/99772098678?pwd=Z1ZsYVhvYURHSHp5ZUhOZHhndUtsUT09)
+
+(and, if needed, install the zoom app).
+
+1. or you can start the Zoom app with the following information
+  + meeting ID: 997 7209 8678
+  + Password: ECO3
+
+## Class platforms
+
+We will use *Caseine*
+
+Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
+
+
+## Class material
+
+Chap 3: [Discret Choice](/Data-pdf/030_Discret_Choice_E3_v19.pdf)
+
+
+### Supplementary material
+
+**Lesson Data:** [Data_Bin.txt](/Data-pdf/Data_Bin.txt)
+
+**Exercise Training Logistic regression: **[03.2_ex_Bin-Validation.R](/Data-pdf/03.2_ex_Bin-Validation.R)
+
+[adult.csv](/Data-pdf/adult.csv)
+
