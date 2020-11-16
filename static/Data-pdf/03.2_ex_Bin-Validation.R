@@ -10,7 +10,7 @@
 
 # 1
 
-setwd("G:\\IRA\\888_ESE UPMF\\2018_C2ES_M2_Econometrie3")
+setwd("G:\\IRA\\888_ESE UPMF\\2020_C2ES_M2_Econometrie3\\Rscripts")
 inputData <- read.csv("adult.csv")
 head(inputData)
 
@@ -83,9 +83,27 @@ optCutOff <- optimalCutoff(testData$ABOVE50K, predicted)[1]
 misClassError(testData$ABOVE50K, predicted, threshold = optCutOff)
 
 plotROC(testData$ABOVE50K, predicted)
+# Sensitivity: proportion of non-events that are correctly predicted
+# Specificity: proportion of events that are correctly predicted
+
 Concordance(testData$ABOVE50K, predicted)
 # % of true positive
 sensitivity(testData$ABOVE50K, predicted, threshold = optCutOff)
 # % of true negative
 specificity(testData$ABOVE50K, predicted, threshold = optCutOff)
+
 confusionMatrix(testData$ABOVE50K, predicted, threshold = optCutOff)
+
+# ***
+
+classDF <- data.frame(response = logitMod$y, predicted = round(fitted(logitMod),0))
+xtabs(~ predicted + response, data = classDF)
+                                                             
+ClassTab <- xtabs(~ predicted + response, data = classDF)
+(ClassTab[1,1] + ClassTab[2,2] ) / sum(ClassTab)                                                             
+                                                             
+predpr <- predict(logitMod,type=c("response"))
+library(pROC)
+roccurve <- roc(trainingData$ABOVE50K ~ predpr)
+plot(roccurve)
+auc(roccurve)
