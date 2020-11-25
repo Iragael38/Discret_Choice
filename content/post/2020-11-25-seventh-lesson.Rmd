@@ -39,7 +39,7 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
 
 ## Class material
 
-Chap 4: [Multinomial logit](/Data-pdf/ )
+Chap 4: [Multinomial logit](/Data-pdf/040_Multiple_Choice_E3.pdf)
 
 
 ### Supplementary material
