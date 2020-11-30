@@ -1,0 +1,43 @@
+---
+title: eighth lesson
+author: ''
+date: '2020-11-30'
+slug: []
+categories: 
+  - Lesson
+tags:
+  - Lesson
+description: ''
+thumbnail: ''
+---
+
+
+Welcome to the Eighth lesson - 07/12/2020 9:00 - 12:00
+
+
+## Zoom meeting
+
+We will use Zoom.
+
+You can connect to zoom:
+
+1. following this link: (  )
+
+(and, if needed, install the zoom app).
+
+1. or you can start the Zoom app with the following information
+  + meeting ID:    
+  + Password: ECO3
+
+
+## Class platforms
+
+We will use *Caseine*
+
+Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
+
+
+## Class material
+
+
+
