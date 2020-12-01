@@ -1,0 +1,33 @@
+---
+title: Dynamic Documents with RMarkdown
+author: 'IJ'
+date: '2020-12-01'
+slug: []
+categories: []
+tags: []
+description: ''
+thumbnail: ''
+---
+
+You will find on this post:
+
+1. Access to a [survey of commands](../2020-12-01-reproducibleresearch) useful in dynamic documents generation with RStudio (these commands are compatible with html, pdf, presentation, ... output formats)
+1. Example of pdf Beamer slides generated with RStudio : [pdf](../../Data-pdf/Dynamic_Doc/Exemple_RED_RMD.pdf)
+   + To generate these slides locally, you can download and extract this archive [zip](../../Data-pdf/Dynamic_Doc/Exemple-RMD.zip)
+   + Description of the archive and explanation can be found in the following sections
+   
+
+## Project Structure 
+
+Production of the slides is managed by a [master Rmd file](../../Data-pdf/Dynamic_Doc/Exemple_RED_RMD.pdf).
+
+The document will use several inputs that are stored in different sub-folders:
+
+- sub-documents [MonTraitement.Rmd](../../Data-pdf/Dynamic_Doc/MonTraitement.Rmd) the includes some data treatments and includes them in slides (stored in `Fichiers_Aux`)
+- images in png format to be included in the slides (stored in `Fichiers_Aux`)
+- databases in csv format that are loaded and analyzed in `MonTraitement.Rmd` (stored in `Data`)
+- bibliographic references gathered in two `.bib` files `bibliographie1.bib` and `bibliographie2.bib` (stored in `Biblio`)
+
+This structure  needs to be reproduced on your system or you will have to change the relative paths used to locate theses files.
+
+

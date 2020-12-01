@@ -4,36 +4,81 @@
   
   <url>
     <loc>https://discretchoicemodelling.netlify.app/categories/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://discretchoicemodelling.netlify.app/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-12-01-dynamic-documents-with-rmarkdown/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://discretchoicemodelling.netlify.app/tags/lesson/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://discretchoicemodelling.netlify.app/categories/lesson/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+    <loc>https://discretchoicemodelling.netlify.app/tags/plot/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://discretchoicemodelling.netlify.app/post/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/categories/r/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/tags/r-markdown/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/tags/regression/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-12-01-reproducibleresearch/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://discretchoicemodelling.netlify.app/tags/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-30-eighth-lesson/</loc>
+    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/tags/lesson/</loc>
+    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/categories/lesson/</loc>
+    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-25-seventh-lesson/</loc>
+    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-16-sixth-lesson/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</loc>
     <lastmod>2020-11-13T00:00:00+00:00</lastmod>
   </url>
   
@@ -88,7 +133,7 @@
   </url>
   
   <url>
-    <loc>https://discretchoicemodelling.netlify.app/lessons_list/lesson_0.1_reproducibleresearch/</loc>
+    <loc>https://discretchoicemodelling.netlify.app/lessons_list/reproducibleresearch/</loc>
   </url>
   
   <url>
@@ -100,23 +145,7 @@
   </url>
   
   <url>
-    <loc>https://discretchoicemodelling.netlify.app/tags/plot/</loc>
-  </url>
-  
-  <url>
-    <loc>https://discretchoicemodelling.netlify.app/categories/r/</loc>
-  </url>
-  
-  <url>
-    <loc>https://discretchoicemodelling.netlify.app/tags/r-markdown/</loc>
-  </url>
-  
-  <url>
     <loc>https://discretchoicemodelling.netlify.app/references/</loc>
-  </url>
-  
-  <url>
-    <loc>https://discretchoicemodelling.netlify.app/tags/regression/</loc>
   </url>
   
 </urlset>

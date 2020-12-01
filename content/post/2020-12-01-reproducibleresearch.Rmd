@@ -1,8 +1,8 @@
 ---
-title: "Introduction to Reproducible Analysis"
-subtitle: "Smart Analytics for Big Data"
-author: "Iragaël Joly"
-date: "Automn 2020"
+title: ReproducibleResearch
+author: ''
+date: '2020-12-01'
+slug: []
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
 authorbox: false

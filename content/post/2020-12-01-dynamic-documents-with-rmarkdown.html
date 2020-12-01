@@ -1,0 +1,37 @@
+---
+title: Dynamic Documents with RMarkdown
+author: 'IJ'
+date: '2020-12-01'
+slug: []
+categories: []
+tags: []
+description: ''
+thumbnail: ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>You will find on this post:</p>
+<ol style="list-style-type: decimal">
+<li>Access to a <a href="../2020-12-01-reproducibleresearch">survey of commands</a> useful in dynamic documents generation with RStudio (these commands are compatible with html, pdf, presentation, … output formats)</li>
+<li>Example of pdf Beamer slides generated with RStudio : <a href="../../Data-pdf/Dynamic_Doc/Exemple_RED_RMD.pdf">pdf</a>
+<ul>
+<li>To generate these slides locally, you can download and extract this archive <a href="../../Data-pdf/Dynamic_Doc/Exemple-RMD.zip">zip</a></li>
+<li>Description of the archive and explanation can be found in the following sections</li>
+</ul></li>
+</ol>
+<div id="project-structure" class="section level2">
+<h2>Project Structure</h2>
+<p>Production of the slides is managed by a <a href="../../Data-pdf/Dynamic_Doc/Exemple_RED_RMD.pdf">master Rmd file</a>.</p>
+<p>The document will use several inputs that are stored in different sub-folders:</p>
+<ul>
+<li>sub-documents <a href="../../Data-pdf/Dynamic_Doc/MonTraitement.Rmd">MonTraitement.Rmd</a> the includes some data treatments and includes them in slides (stored in <code>Fichiers_Aux</code>)</li>
+<li>images in png format to be included in the slides (stored in <code>Fichiers_Aux</code>)</li>
+<li>databases in csv format that are loaded and analyzed in <code>MonTraitement.Rmd</code> (stored in <code>Data</code>)</li>
+<li>bibliographic references gathered in two <code>.bib</code> files <code>bibliographie1.bib</code> and <code>bibliographie2.bib</code> (stored in <code>Biblio</code>)</li>
+</ul>
+<p>This structure needs to be reproduced on your system or you will have to change the relative paths used to locate theses files.</p>
+</div>

@@ -5,7 +5,19 @@
     <link>https://discretchoicemodelling.netlify.app/tags/plot/</link>
     <description>Recent content in plot on Discret Choice Modelling Lesson</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://discretchoicemodelling.netlify.app/tags/plot/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://discretchoicemodelling.netlify.app/tags/plot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ReproducibleResearch</title>
+      <link>https://discretchoicemodelling.netlify.app/post/2020-12-01-reproducibleresearch/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://discretchoicemodelling.netlify.app/post/2020-12-01-reproducibleresearch/</guid>
+      <description>Reproducible AnalysisTypical data analysis workflow looks like this:
+collect dataput it in a file or spreadsheet or databaserun some analyses, written in various scripts,perhaps saving some intermediate results along the wayor maybe always working on the raw data.create some plots or tables of relevant summaries of the data,and then
+go and write a report about the results in a text editor or word processor.</description>
+    </item>
+    
     <item>
       <title>Discret Choice Modelling</title>
       <link>https://discretchoicemodelling.netlify.app/lesson_1/</link>
@@ -23,18 +35,18 @@ PDF</description>
       
       <guid>https://discretchoicemodelling.netlify.app/lessons/</guid>
       <description>Lessons listThis is the website of the Lesson Discret Choice Modelling taught at Grenoble UGA.
-Fifth Lesson - 16/11/2020 - 9:00 - 12:00Material for the Fifth Lesson
-Fourth Lesson - 02/11/2020 - 9:00 - 12:00Material for the Fourth Lesson
-Third Lesson - 19/10/2020 - 9:00 - 12:00Material for the Third Lesson
-Second Lesson - 12/10/2020 - 9:00 - 12:00Material for the Second Lesson</description>
+Seventh Lesson - 30/11/2020 - 9:00 - 12:00Material for the Seventh Lesson
+Sixth Lesson - 23/11/2020 - 9:00 - 12:00Material for the Sixth Lesson
+Fifth Lesson - 16/11/2020 - 9:00 - 12:00Material for the Fifth Lesson
+Fourth Lesson - 02/11/2020 - 9:00 - 12:00Material for the Fourth Lesson</description>
     </item>
     
     <item>
       <title>Introduction to Reproducible Analysis</title>
-      <link>https://discretchoicemodelling.netlify.app/lessons_list/lesson_0.1_reproducibleresearch/</link>
+      <link>https://discretchoicemodelling.netlify.app/lessons_list/reproducibleresearch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://discretchoicemodelling.netlify.app/lessons_list/lesson_0.1_reproducibleresearch/</guid>
+      <guid>https://discretchoicemodelling.netlify.app/lessons_list/reproducibleresearch/</guid>
       <description>Reproducible AnalysisTypical data analysis workflow looks like this:
 collect dataput it in a file or spreadsheet or databaserun some analyses, written in various scripts,perhaps saving some intermediate results along the wayor maybe always working on the raw data.create some plots or tables of relevant summaries of the data,and then
 go and write a report about the results in a text editor or word processor.</description>
