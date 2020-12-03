@@ -12,7 +12,7 @@
 <meta property="og:description" content="Discret Choice Modelling" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://discretchoicemodelling.netlify.app/" />
-<meta property="og:updated_time" content="2020-12-01T00:00:00+00:00" />
+<meta property="og:updated_time" content="2020-12-03T00:00:00+00:00" />
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -98,11 +98,14 @@
 <div id="whats-new" class="section level2">
 <h2>What’s new:</h2>
 <ul>
+<li>03 dec: Eighth lesson - Defense session <strong>7 dec.</strong> <a href="../post/2020-11-30-eighth-lesson">link</a></li>
+<li>03 dec: correction of the Binary regression with cross validation exercise : you can access the Rmd file : <a href="/Data-pdf/03.2_Reg_Bin_Validation.Rmd">03.2_Reg_Bin_Validation.Rmd</a> and the <a href="../post/2020-12-03-binary-regression-with-cross-validation">link</a><br />
+</li>
 <li>01 dec: <a href="../post/2020-12-01-dynamic-documents-with-rmarkdown">Post about dynamic documents with R</a> and example of <a href="/Data-pdf/Dynamic_Doc/Exemple_RED_RMD.pdf">support</a> for presentation generated with RStudio (all required files are in the post)</li>
 <li>25 nov: Seventh lesson <strong>30 nov.</strong> <a href="../post/2020-11-25-seventh-lesson">link</a></li>
-<li>16 nov: correction of the allison exercise : you can acces the Rmd file : <a href="/Data-pdf/2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd">2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd</a></li>
-<li>02 nov: correction of the allison exercise : you can acces the Rmd file : <a href="/Data-pdf/2020-11-02-02_Allison_Penalty.Rmd">02_Allison_Penalty.Rmd</a>
-and the page of the <a href="../post/2020-11-02-02_Allison_Penalty">exercise</a></li>
+<li>16 nov: correction of the Titanic exercise : you can access the Rmd file : <a href="/Data-pdf/2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd">2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd</a></li>
+<li>02 nov: correction of the Allison exercise : you can access the Rmd file : <a href="/Data-pdf/2020-11-02-02_Allison_Penalty.Rmd">02_Allison_Penalty.Rmd</a>
+and the page of the <a href="../post/2020-12-03-exercice-penalty-allison">exercise</a></li>
 <li>29 oct: start of the <a href="../post/2020-11-02-project-2020">project</a></li>
 <li>29 oct: fourth lesson <a href="../post/2020-11-02-fourth-lesson-november-2020">link</a></li>
 </ul>
@@ -325,6 +328,56 @@ Train, K. 2009. <em>Discrete Choice Methods with Simulation (2nd Ed.)</em>. <spa
 	<article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
+			<a href="/post/2020-12-03-binary-regression-with-cross-validation/" rel="bookmark">
+			Binary Regression with Cross Validation
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-12-03T00:00:00Z">December 03, 2020</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Lets try and predict if an individual will earn more than $50K (ABOVE50K) using logistic regression based on demographic variables available in the adult data.
+In this process, we will:
+Part I
+Import the dataEstimate binary regression (logit and probit) and check some diagnosticsBuild logit models and predict on test dataDo model diagnosticsPart II
+Create training and test samplesCompare the cross-validation results with the regression only resultsLoad the datainputData &lt;- read.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/2020-11-02-02_allison_penalty/" rel="bookmark">
+			Exercice Penalty ALLISON
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-12-03T00:00:00Z">December 03, 2020</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		EXERCISE inspired from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
+Les données sont décrites dans Allison (2010)
+Data set consists of 147 death penalty cases in the state of New Jersey.The defendant was convicted of first-degree murder with a recommendation by the prosecutor that a death sentence be imposed.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/2020-12-03-exercice-penalty-allison/" rel="bookmark">
+			Exercice Penalty ALLISON
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-12-03T00:00:00Z">December 03, 2020</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		EXERCISE inspired from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
+Les données sont décrites dans Allison (2010)
+Data set consists of 147 death penalty cases in the state of New Jersey.The defendant was convicted of first-degree murder with a recommendation by the prosecutor that a death sentence be imposed.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
 			<a href="/post/2020-12-01-dynamic-documents-with-rmarkdown/" rel="bookmark">
 			Dynamic Documents with RMarkdown
 			</a>
@@ -369,14 +422,13 @@ go and write a report about the results in a text editor or word processor.
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Welcome to the Eighth lesson - 07/12/2020 9:00 - 12:00
+		Welcome to the Eighth lesson - 07/12/2020 9:00 - 12:00
+This is the final session devoted to defense of your project
+I ask you to upload your pdf and eventually .Rmd files on Caseine (see link below)
 Zoom meetingWe will use Zoom.
 You can connect to zoom:
-following this link: ( )(and, if needed, install the zoom app).
-or you can start the Zoom app with the following informationmeeting ID:
-Password: ECO3Class platformsWe will use Caseine
-Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
-Class material
+following this link: (https://grenoble-inp.zoom.us/j/94695773013?pwd=d3hqb1E4S0xOV0xINWlnRUVWNFBlZz09)(and, if needed, install the zoom app).
+or you can start the Zoom app with the following informationmeeting ID: 946 9577 3013
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -446,22 +498,6 @@ Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
 </article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
-			<a href="/post/2020-11-02-02_allison_penalty/" rel="bookmark">
-			Exercice Penalty ALLISON
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-02T00:00:00Z">November 02, 2020</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		EXERCISE inspired from Paul Allison : logistic regression using SAS, 2nd Ed.Dans cet exercice une attention particulière est donnée aux erreurs d’interprétations. Pour cela la thèmatique est délibérément lourde et sensible, pour forcer à prendre des précautions avant les conclusions attives.
-Les données sont décrites dans Allison (2010)
-Data set consists of 147 death penalty cases in the state of New Jersey.The defendant was convicted of first-degree murder with a recommendation by the prosecutor that a death sentence be imposed.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
 			<a href="/post/2020-11-02-fourth-lesson-november-2020/" rel="bookmark">
 			Fourth Lesson October 2020
 			</a>
@@ -478,47 +514,6 @@ Zoom meetingWe will use Zoom.
 You can connect to zoom:
 following this link: (https://grenoble-inp.zoom.us/j/96592180886?pwd=dWVWU1lSTlViWStWR2NRd0JZMzBvUT09)(and, if needed, install the zoom app).
 or you can start the Zoom app with the following informationmeeting ID: 965 9218 0886Password: ECO3Class platformsWe will use Caseine
-Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
-Class materialBinary logistic
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/2020-11-02-project-2020/" rel="bookmark">
-			Project Page
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-02T00:00:00Z">November 02, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/lesson/" rel="category">Lesson</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Project PageStart of the ProjectYou can define the teams Here
-You will find on Caseine the zip-archive of files needed for the project (inc. statement)
-Here is the statement of the project
-
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/2020-10-19-third-lesson-october-2020/" rel="bookmark">
-			Third Lesson October 2020
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-19T00:00:00Z">October 19, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/lesson/" rel="category">Lesson</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Third LessonWelcome to the third lesson - 19/10/2020 9:00 - 12:00
-Zoom meetingWe will use Zoom.
-You can connect to zoom:
-following this link: (https://grenoble-inp.zoom.us/j/95345727181?pwd=RWJPYzFJMllnUDdDeGx6VDkwVW5TZz09)(and, if needed, install the zoom app).
-or you can start the Zoom app with the following informationmeeting ID: 953 4572 7181Password: ECO3Class platformsWe will use Caseine
 Caseine page is: (https://moodle.caseine.org/course/view.php?id=346)
 Class materialBinary logistic
 	</div>

@@ -12,15 +12,15 @@ nocite: |
 
 # Welcome {.tabset}
 
-
 ## What's new:
 
-- 03 dec: Eighth lesson **7 dec.** [link](../post/2020-11-30-eighth-lesson) 
+- 03 dec: Eighth lesson - Defense session **7 dec.** [link](../post/2020-11-30-eighth-lesson) 
+- 03 dec: correction of the Binary regression with cross validation exercise : you can access the Rmd file : [03.2_Reg_Bin_Validation.Rmd](/Data-pdf/03.2_Reg_Bin_Validation.Rmd) and the [link](../post/2020-12-03-binary-regression-with-cross-validation)  
 - 01 dec: [Post about dynamic documents with R](../post/2020-12-01-dynamic-documents-with-rmarkdown)  and example of [support](/Data-pdf/Dynamic_Doc/Exemple_RED_RMD.pdf)  for presentation generated with RStudio (all required files are in the post)
 - 25 nov: Seventh lesson **30 nov.** [link](../post/2020-11-25-seventh-lesson) 
-- 16 nov: correction of the allison exercise : you can acces the Rmd file : [2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd](/Data-pdf/2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd)
-- 02 nov: correction of the allison exercise : you can acces the Rmd file : [02_Allison_Penalty.Rmd](/Data-pdf/2020-11-02-02_Allison_Penalty.Rmd)
-and the page of the [exercise](../post/2020-11-02-02_Allison_Penalty) 
+- 16 nov: correction of the Titanic exercise : you can access the Rmd file : [2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd](/Data-pdf/2020-11-16_02-5_Titanic_Case_Logistic_Fit.Rmd)
+- 02 nov: correction of the Allison exercise : you can access the Rmd file : [02_Allison_Penalty.Rmd](/Data-pdf/2020-11-02-02_Allison_Penalty.Rmd)
+and the page of the [exercise](../post/2020-12-03-exercice-penalty-allison) 
 - 29 oct: start of the [project](../post/2020-11-02-project-2020) 
 - 29 oct: fourth lesson [link](../post/2020-11-02-fourth-lesson-november-2020) 
 

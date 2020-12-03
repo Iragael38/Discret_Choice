@@ -3,12 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://discretchoicemodelling.netlify.app/categories/</loc>
-    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-12-03-binary-regression-with-cross-validation/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://discretchoicemodelling.netlify.app/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-02-02_allison_penalty/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/2020-12-03-exercice-penalty-allison/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/post/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://discretchoicemodelling.netlify.app/categories/</loc>
     <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -19,11 +39,6 @@
   
   <url>
     <loc>https://discretchoicemodelling.netlify.app/tags/plot/</loc>
-    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://discretchoicemodelling.netlify.app/post/</loc>
     <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -80,11 +95,6 @@
   <url>
     <loc>https://discretchoicemodelling.netlify.app/post/2020-11-13-fifth-lesson/</loc>
     <lastmod>2020-11-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://discretchoicemodelling.netlify.app/post/2020-11-02-02_allison_penalty/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>

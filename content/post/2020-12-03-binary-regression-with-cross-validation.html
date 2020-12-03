@@ -1,0 +1,654 @@
+---
+title: Binary Regression with Cross Validation
+author: ''
+date: '2020-12-03'
+slug: []
+categories: []
+tags: []
+description: ''
+thumbnail: ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>Lets try and predict if an individual will earn more than $50K (ABOVE50K) using logistic regression based on demographic variables available in the adult data.</p>
+<p>In this process, we will:</p>
+<p><strong>Part I</strong></p>
+<ul>
+<li>Import the data</li>
+<li>Estimate binary regression (logit and probit) and check some diagnostics</li>
+<li>Build logit models and predict on test data</li>
+<li>Do model diagnostics</li>
+</ul>
+<p><strong>Part II</strong></p>
+<ul>
+<li>Create training and test samples</li>
+<li>Compare the cross-validation results with the regression only results</li>
+</ul>
+<div id="load-the-data" class="section level2">
+<h2>Load the data</h2>
+<pre class="r"><code>inputData &lt;- read.csv(&quot;data/adult.csv&quot;)
+head(inputData)</code></pre>
+<pre><code>##   AGE         WORKCLASS FNLWGT  EDUCATION EDUCATIONNUM       MARITALSTATUS
+## 1  39         State-gov  77516  Bachelors           13       Never-married
+## 2  50  Self-emp-not-inc  83311  Bachelors           13  Married-civ-spouse
+## 3  38           Private 215646    HS-grad            9            Divorced
+## 4  53           Private 234721       11th            7  Married-civ-spouse
+## 5  28           Private 338409  Bachelors           13  Married-civ-spouse
+## 6  37           Private 284582    Masters           14  Married-civ-spouse
+##           OCCUPATION   RELATIONSHIP   RACE     SEX CAPITALGAIN CAPITALLOSS
+## 1       Adm-clerical  Not-in-family  White    Male        2174           0
+## 2    Exec-managerial        Husband  White    Male           0           0
+## 3  Handlers-cleaners  Not-in-family  White    Male           0           0
+## 4  Handlers-cleaners        Husband  Black    Male           0           0
+## 5     Prof-specialty           Wife  Black  Female           0           0
+## 6    Exec-managerial           Wife  White  Female           0           0
+##   HOURSPERWEEK  NATIVECOUNTRY ABOVE50K
+## 1           40  United-States        0
+## 2           13  United-States        0
+## 3           40  United-States        0
+## 4           40  United-States        0
+## 5           40           Cuba        0
+## 6           40  United-States        0</code></pre>
+</div>
+<div id="some-summary-stat" class="section level2">
+<h2>Some summary stat</h2>
+<pre class="r"><code>kable(table(inputData$ABOVE50K)/length(inputData$ABOVE50K), 
+      caption = &quot;Count table&quot; ,  digits = 3,
+      col.names = c(&quot;ABOVE50K&quot;, &quot;Freq&quot;), align = &quot;cc&quot;
+      )</code></pre>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 1: </span>Count table</caption>
+<thead>
+<tr class="header">
+<th align="center">ABOVE50K</th>
+<th align="center">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0.759</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0.241</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable( list(
+  table(inputData$RELATIONSHIP)/length(inputData$RELATIONSHIP),   
+  table(inputData$OCCUPATION)/length(inputData$OCCUPATION)    ),
+      caption = &quot;Count table of categorical explanatory variables&quot; ,  digits = 3 
+  
+)</code></pre>
+<table class="kable_wrapper">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 1: </span>Count table of categorical explanatory variables
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Var1</th>
+<th align="right">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Husband</td>
+<td align="right">0.405</td>
+</tr>
+<tr class="even">
+<td align="left">Not-in-family</td>
+<td align="right">0.255</td>
+</tr>
+<tr class="odd">
+<td align="left">Other-relative</td>
+<td align="right">0.030</td>
+</tr>
+<tr class="even">
+<td align="left">Own-child</td>
+<td align="right">0.156</td>
+</tr>
+<tr class="odd">
+<td align="left">Unmarried</td>
+<td align="right">0.106</td>
+</tr>
+<tr class="even">
+<td align="left">Wife</td>
+<td align="right">0.048</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Var1</th>
+<th align="right">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">?</td>
+<td align="right">0.057</td>
+</tr>
+<tr class="even">
+<td align="left">Adm-clerical</td>
+<td align="right">0.116</td>
+</tr>
+<tr class="odd">
+<td align="left">Armed-Forces</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">Craft-repair</td>
+<td align="right">0.126</td>
+</tr>
+<tr class="odd">
+<td align="left">Exec-managerial</td>
+<td align="right">0.125</td>
+</tr>
+<tr class="even">
+<td align="left">Farming-fishing</td>
+<td align="right">0.031</td>
+</tr>
+<tr class="odd">
+<td align="left">Handlers-cleaners</td>
+<td align="right">0.042</td>
+</tr>
+<tr class="even">
+<td align="left">Machine-op-inspct</td>
+<td align="right">0.061</td>
+</tr>
+<tr class="odd">
+<td align="left">Other-service</td>
+<td align="right">0.101</td>
+</tr>
+<tr class="even">
+<td align="left">Priv-house-serv</td>
+<td align="right">0.005</td>
+</tr>
+<tr class="odd">
+<td align="left">Prof-specialty</td>
+<td align="right">0.127</td>
+</tr>
+<tr class="even">
+<td align="left">Protective-serv</td>
+<td align="right">0.020</td>
+</tr>
+<tr class="odd">
+<td align="left">Sales</td>
+<td align="right">0.112</td>
+</tr>
+<tr class="even">
+<td align="left">Tech-support</td>
+<td align="right">0.029</td>
+</tr>
+<tr class="odd">
+<td align="left">Transport-moving</td>
+<td align="right">0.049</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="part-i" class="section level1">
+<h1>Part I</h1>
+<div id="estimate-pabove50k-1-as-function-of-relationship-age-capitalgain-occupation-educationnum" class="section level2">
+<h2>Estimate P(Above50K = 1) as function of <code>RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + EDUCATIONNUM</code></h2>
+<pre class="r"><code>logitMod &lt;- glm(ABOVE50K ~ RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + EDUCATIONNUM, data=inputData, family=binomial(link=&quot;logit&quot;))</code></pre>
+<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<pre class="r"><code>summary(logitMod)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = ABOVE50K ~ RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + 
+##     EDUCATIONNUM, family = binomial(link = &quot;logit&quot;), data = inputData)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -5.0090  -0.5443  -0.2189  -0.0451   3.5959  
+## 
+## Coefficients:
+##                                Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                  -5.489e+00  1.613e-01 -34.038  &lt; 2e-16 ***
+## RELATIONSHIP Not-in-family   -2.219e+00  4.880e-02 -45.471  &lt; 2e-16 ***
+## RELATIONSHIP Other-relative  -2.541e+00  1.905e-01 -13.337  &lt; 2e-16 ***
+## RELATIONSHIP Own-child       -3.542e+00  1.369e-01 -25.870  &lt; 2e-16 ***
+## RELATIONSHIP Unmarried       -2.529e+00  8.323e-02 -30.379  &lt; 2e-16 ***
+## RELATIONSHIP Wife             2.864e-01  6.598e-02   4.341 1.42e-05 ***
+## AGE                           2.290e-02  1.458e-03  15.706  &lt; 2e-16 ***
+## CAPITALGAIN                   3.046e-04  9.993e-06  30.486  &lt; 2e-16 ***
+## OCCUPATION Adm-clerical       8.287e-01  1.121e-01   7.389 1.48e-13 ***
+## OCCUPATION Armed-Forces       8.536e-01  1.310e+00   0.652   0.5147    
+## OCCUPATION Craft-repair       9.994e-01  1.064e-01   9.392  &lt; 2e-16 ***
+## OCCUPATION Exec-managerial    1.775e+00  1.041e-01  17.057  &lt; 2e-16 ***
+## OCCUPATION Farming-fishing   -3.031e-02  1.491e-01  -0.203   0.8389    
+## OCCUPATION Handlers-cleaners  1.977e-01  1.584e-01   1.248   0.2119    
+## OCCUPATION Machine-op-inspct  6.132e-01  1.234e-01   4.969 6.74e-07 ***
+## OCCUPATION Other-service     -9.886e-02  1.362e-01  -0.726   0.4680    
+## OCCUPATION Priv-house-serv   -2.991e+00  1.750e+00  -1.710   0.0873 .  
+## OCCUPATION Prof-specialty     1.392e+00  1.062e-01  13.104  &lt; 2e-16 ***
+## OCCUPATION Protective-serv    1.425e+00  1.391e-01  10.240  &lt; 2e-16 ***
+## OCCUPATION Sales              1.251e+00  1.072e-01  11.667  &lt; 2e-16 ***
+## OCCUPATION Tech-support       1.499e+00  1.307e-01  11.467  &lt; 2e-16 ***
+## OCCUPATION Transport-moving   9.089e-01  1.206e-01   7.535 4.87e-14 ***
+## EDUCATIONNUM                  2.884e-01  8.829e-03  32.662  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 35948  on 32560  degrees of freedom
+## Residual deviance: 21822  on 32538  degrees of freedom
+## AIC: 21868
+## 
+## Number of Fisher Scoring iterations: 8</code></pre>
+<p>We see significant coefficients We can interpret their signs, but not their values.</p>
+<p>For categorical variables, we see all levels but one. R creates binary variable for each level of the factor variables. One of these variables have to be excluded from the model (the model could not be estimated otherwise).</p>
+<p>The excluded level is the first level by alphabetical order, by default. This level is used as the reference level for interpretation of the other levels.</p>
+<p>Hence, for RELATIONSHIP, the reference level is <code>husband</code>. All negative (resp. positive) coefficients indicate a decrease (resp. increase) in the probability of event, relatively to the probability of the <code>husband</code> level.</p>
+<p>The same idea for OCCUPATION, with a reference labeled <code>?</code> let say “undetermined”. A non significant coefficient, as <code>Armed-Forces</code> indicates that the level has no significant difference in probability of event compared to the probability of the reference level.</p>
+<p>Based on this result, we could think about gathering all non significantly different levels in a group level.</p>
+<div id="quality-of-fit" class="section level3">
+<h3>Quality of fit</h3>
+<p>We can perform an equivalent test of the Fischer test in OLS regression, testing for global significance of the model.</p>
+<p><span class="math inline">\(H_0:\)</span> all <span class="math inline">\(\beta\)</span> are null except the intercept</p>
+<p>vs.</p>
+<p><span class="math inline">\(H_1\)</span>: at least one variable has significant effect</p>
+<p>for such test, we can use <code>anova()</code> function, which compare the likelihood of the null model to the unrestricted model:</p>
+<pre class="r"><code># test for the full model against the 0-model
+glm0 &lt;- glm(ABOVE50K ~ 1 , data=inputData, family=binomial(link=&quot;logit&quot;))
+anova(glm0, logitMod, test=&quot;Chisq&quot;)</code></pre>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: ABOVE50K ~ 1
+## Model 2: ABOVE50K ~ RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + EDUCATIONNUM
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1     32560      35948                          
+## 2     32538      21822 22    14126 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As expected, the p-value is small, <span class="math inline">\(H_0\)</span> is rejected. This is in line with the p-values from the significance test per variable (several coefficients are highly significant in the results table)</p>
+</div>
+<div id="coefficients-inference" class="section level3">
+<h3>Coefficients inference</h3>
+<p>We can build confidence interval of the estimated coefficients and the odds ratios.
+We observe narrow interval, indicating good precision in estimate (low standard errors).
+Of course zero is not in CI for significant coefficients</p>
+<p>Interpretations of OR are relative to the reference level for categorical variables.</p>
+<pre class="r"><code># IC
+confint(logitMod)</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>##                                      2.5 %        97.5 %
+## (Intercept)                  -5.8074862801 -5.1752725846
+## RELATIONSHIP Not-in-family   -2.3152241763 -2.1239171277
+## RELATIONSHIP Other-relative  -2.9334452773 -2.1844917905
+## RELATIONSHIP Own-child       -3.8207515099 -3.2831438777
+## RELATIONSHIP Unmarried       -2.6944892128 -2.3680728278
+## RELATIONSHIP Wife             0.1570978971  0.4157600673
+## AGE                           0.0200430946  0.0257587277
+## CAPITALGAIN                   0.0002853368  0.0003245099
+## OCCUPATION Adm-clerical       0.6105144762  1.0502878123
+## OCCUPATION Armed-Forces      -2.3486956541  3.0571771887
+## OCCUPATION Craft-repair       0.7929134747  1.2102032214
+## OCCUPATION Exec-managerial    1.5733082603  1.9814261373
+## OCCUPATION Farming-fishing   -0.3244981717  0.2604656944
+## OCCUPATION Handlers-cleaners -0.1157819139  0.5056343474
+## OCCUPATION Machine-op-inspct  0.3722150227  0.8561790813
+## OCCUPATION Other-service     -0.3667353528  0.1675831626
+## OCCUPATION Priv-house-serv   -6.7131756079 -0.4101074508
+## OCCUPATION Prof-specialty     1.1857265804  1.6022591067
+## OCCUPATION Protective-serv    1.1526501806  1.6981708133
+## OCCUPATION Sales              1.0426691773  1.4630780685
+## OCCUPATION Tech-support       1.2440004079  1.7566233184
+## OCCUPATION Transport-moving   0.6737166128  1.1466878230
+## EDUCATIONNUM                  0.2711355433  0.3057453405</code></pre>
+<pre class="r"><code># Odd Ratio interpretation
+exp(logitMod$coefficients)</code></pre>
+<pre><code>##                  (Intercept)   RELATIONSHIP Not-in-family 
+##                  0.004131103                  0.108726287 
+##  RELATIONSHIP Other-relative       RELATIONSHIP Own-child 
+##                  0.078792782                  0.028947232 
+##       RELATIONSHIP Unmarried            RELATIONSHIP Wife 
+##                  0.079777169                  1.331624168 
+##                          AGE                  CAPITALGAIN 
+##                  1.023163197                  1.000304687 
+##      OCCUPATION Adm-clerical      OCCUPATION Armed-Forces 
+##                  2.290262199                  2.348008179 
+##      OCCUPATION Craft-repair   OCCUPATION Exec-managerial 
+##                  2.716647595                  5.901175444 
+##   OCCUPATION Farming-fishing OCCUPATION Handlers-cleaners 
+##                  0.970145428                  1.218631315 
+## OCCUPATION Machine-op-inspct     OCCUPATION Other-service 
+##                  1.846345510                  0.905869803 
+##   OCCUPATION Priv-house-serv    OCCUPATION Prof-specialty 
+##                  0.050238348                  4.022760205 
+##   OCCUPATION Protective-serv             OCCUPATION Sales 
+##                  4.156265423                  3.493173529 
+##      OCCUPATION Tech-support  OCCUPATION Transport-moving 
+##                  4.478030043                  2.481570963 
+##                 EDUCATIONNUM 
+##                  1.334249075</code></pre>
+</div>
+<div id="constraints-test-between-coefficients" class="section level3">
+<h3>Constraints test between coefficients</h3>
+<p>Wald test can be used</p>
+<ul>
+<li>to test significant impact of <code>farm-fishing</code> level of OCCUPATION: <span class="math inline">\(H_0\)</span> : <span class="math inline">\(\beta_{\text{farm-fishing}} = 0\)</span></li>
+<li>to test equal impact of two levels of RELATIONSHIP: <span class="math inline">\(H_0\)</span> : <span class="math inline">\(\beta_{\text{Not-in-family}} = \beta_{\text{Other-relative}}\)</span>
+which can be written: <span class="math inline">\(\beta_{\text{Not-in-family}} - \beta_{\text{Other-relative}} = 0\)</span></li>
+</ul>
+<pre class="r"><code># Wald.test: Occupation=farm-fishing
+library(aod)
+wald.test(b=coef(logitMod), Sigma=vcov(logitMod), Terms=13)</code></pre>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 0.041, df = 1, P(&gt; X2) = 0.84</code></pre>
+<pre class="r"><code># Wald Test: Rel:Not-in-family = Rel: Other-relative
+restr &lt;- rbind(c(0, -1, 1, 0,0,0, rep(0,17)))
+wald.test(b = coef(logitMod), Sigma = vcov(logitMod), L = restr)</code></pre>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 2.8, df = 1, P(&gt; X2) = 0.097</code></pre>
+<p>First assumption is not reject (accordingly to the p-value of this test and the one of the coefficient).</p>
+<p>Second assumption is rejected with risk 10%</p>
+</div>
+<div id="multicolinearity-diagnostic" class="section level3">
+<h3>Multicolinearity diagnostic</h3>
+<p>Multicolinearity can be evaluated with VIF (Variance Inflation Factor). GReater than 10, VIF would indicate excessive multicolinearity</p>
+<pre class="r"><code># VIF diagnostic
+library(car)</code></pre>
+<pre><code>## Warning: le package &#39;car&#39; a été compilé avec la version R 3.6.3</code></pre>
+<pre><code>## Le chargement a nécessité le package : carData</code></pre>
+<pre><code>## Warning: le package &#39;carData&#39; a été compilé avec la version R 3.6.3</code></pre>
+<pre class="r"><code>vif(logitMod)</code></pre>
+<pre><code>##                  GVIF Df GVIF^(1/(2*Df))
+## RELATIONSHIP 1.251883  5        1.022719
+## AGE          1.098519  1        1.048103
+## CAPITALGAIN  1.020182  1        1.010041
+## OCCUPATION   1.685874 14        1.018828
+## EDUCATIONNUM 1.449571  1        1.203981</code></pre>
+</div>
+</div>
+</div>
+<div id="part-i-1" class="section level1">
+<h1>Part I</h1>
+<p>Analyse prediction capacity with or without Cross validation</p>
+<div id="create-training-data-and-test-data" class="section level2">
+<h2>Create Training Data and Test Data</h2>
+<p>To preserve proportions of success and failure, we split the original data and pick 70% in each subsets.</p>
+<pre class="r"><code>input_ones &lt;- inputData[which(inputData$ABOVE50K == 1), ]  # all 1&#39;s
+input_zeros &lt;- inputData[which(inputData$ABOVE50K == 0), ]  # all 0&#39;s
+set.seed(101)  # for repeatability of samples
+# we pick row numbers 
+input_ones_training_rows &lt;- sample(1:nrow(input_ones), 0.7*nrow(input_ones))  # 1&#39;s for training
+input_zeros_training_rows &lt;- sample(1:nrow(input_zeros), 0.7*nrow(input_zeros))  # 0&#39;s for training. Pick as many 0&#39;s as 1&#39;s
+# we select data based on picked row numbers
+training_ones &lt;- input_ones[input_ones_training_rows, ]  
+training_zeros &lt;- input_zeros[input_zeros_training_rows, ]
+trainingData &lt;- rbind(training_ones, training_zeros)  # row bind the 1&#39;s and 0&#39;s 
+# Create Test Data
+test_ones &lt;- input_ones[-input_ones_training_rows, ]
+test_zeros &lt;- input_zeros[-input_zeros_training_rows, ]
+testData &lt;- rbind(test_ones, test_zeros)  # row bind the 1&#39;s and 0&#39;s </code></pre>
+</div>
+<div id="estimate-and-predict" class="section level2">
+<h2>Estimate and Predict</h2>
+<pre class="r"><code>kable(list(
+      prop.table(table(inputData$ABOVE50K)), 
+      prop.table(table(trainingData$ABOVE50K)), 
+      prop.table(table(testData$ABOVE50K))
+      ),
+      caption = &quot;Proportions in Original Data&quot; ,  digits = 3,
+      col.names = c(&quot;ABOVE50K&quot;, &quot;Freq&quot;), align = &quot;cc&quot;
+      )</code></pre>
+<table class="kable_wrapper">
+<caption>
+<span id="tab:unnamed-chunk-9">Table 2: </span>Proportions in Original Data
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="center">ABOVE50K</th>
+<th align="center">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0.759</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0.241</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="center">ABOVE50K</th>
+<th align="center">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0.759</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0.241</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="center">ABOVE50K</th>
+<th align="center">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0.759</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0.241</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Proportions are respected</p>
+<div id="estimation-on-training-dataset" class="section level3">
+<h3>Estimation on training dataset</h3>
+<pre class="r"><code>logitModT &lt;- glm(ABOVE50K ~ RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + EDUCATIONNUM, data=trainingData, family=binomial(link=&quot;logit&quot;))</code></pre>
+<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<pre class="r"><code>summary(logitModT)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = ABOVE50K ~ RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + 
+##     EDUCATIONNUM, family = binomial(link = &quot;logit&quot;), data = trainingData)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -4.9381  -0.5496  -0.2164  -0.0489   3.5869  
+## 
+## Coefficients:
+##                                Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                  -5.307e+00  1.900e-01 -27.929  &lt; 2e-16 ***
+## RELATIONSHIP Not-in-family   -2.242e+00  5.921e-02 -37.860  &lt; 2e-16 ***
+## RELATIONSHIP Other-relative  -2.554e+00  2.226e-01 -11.474  &lt; 2e-16 ***
+## RELATIONSHIP Own-child       -3.529e+00  1.638e-01 -21.539  &lt; 2e-16 ***
+## RELATIONSHIP Unmarried       -2.501e+00  9.934e-02 -25.173  &lt; 2e-16 ***
+## RELATIONSHIP Wife             2.930e-01  7.799e-02   3.757 0.000172 ***
+## AGE                           2.330e-02  1.734e-03  13.436  &lt; 2e-16 ***
+## CAPITALGAIN                   2.968e-04  1.199e-05  24.759  &lt; 2e-16 ***
+## OCCUPATION Adm-clerical       6.354e-01  1.335e-01   4.758 1.96e-06 ***
+## OCCUPATION Armed-Forces       8.702e-01  1.360e+00   0.640 0.522238    
+## OCCUPATION Craft-repair       8.217e-01  1.259e-01   6.526 6.77e-11 ***
+## OCCUPATION Exec-managerial    1.641e+00  1.232e-01  13.323  &lt; 2e-16 ***
+## OCCUPATION Farming-fishing   -1.728e-01  1.771e-01  -0.975 0.329349    
+## OCCUPATION Handlers-cleaners  7.252e-02  1.865e-01   0.389 0.697346    
+## OCCUPATION Machine-op-inspct  5.194e-01  1.469e-01   3.537 0.000405 ***
+## OCCUPATION Other-service     -1.471e-01  1.603e-01  -0.917 0.358924    
+## OCCUPATION Priv-house-serv   -2.807e+00  1.838e+00  -1.527 0.126713    
+## OCCUPATION Prof-specialty     1.297e+00  1.261e-01  10.286  &lt; 2e-16 ***
+## OCCUPATION Protective-serv    1.159e+00  1.657e-01   6.992 2.72e-12 ***
+## OCCUPATION Sales              1.129e+00  1.269e-01   8.895  &lt; 2e-16 ***
+## OCCUPATION Tech-support       1.355e+00  1.562e-01   8.677  &lt; 2e-16 ***
+## OCCUPATION Transport-moving   7.875e-01  1.428e-01   5.515 3.48e-08 ***
+## EDUCATIONNUM                  2.817e-01  1.053e-02  26.761  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 25162  on 22791  degrees of freedom
+## Residual deviance: 15271  on 22769  degrees of freedom
+## AIC: 15317
+## 
+## Number of Fisher Scoring iterations: 8</code></pre>
+<p>We get almost the same results as on original data.</p>
+</div>
+<div id="prediction-on-the-test-dataset" class="section level3">
+<h3>Prediction on the test dataset</h3>
+<p>We predict probabilities of success for the test dataset.</p>
+<pre class="r"><code># two equivalent functions
+predicted &lt;- plogis(predict(logitModT, testData))  # predicted scores
+# or
+predicted &lt;- predict(logitModT, testData, type=&quot;response&quot;)  # predicted scores</code></pre>
+</div>
+</div>
+<div id="evaluation-of-prediction" class="section level2">
+<h2>Evaluation of prediction</h2>
+<pre class="r"><code># Classification Diagnostic
+#install.packages(&quot;InformationValue&quot;)
+library(InformationValue)</code></pre>
+<pre><code>## Warning: le package &#39;InformationValue&#39; a été compilé avec la version R 3.6.3</code></pre>
+<pre class="r"><code># optimal cut-off proba that minimizes the misclassification error for the above model
+optCutOff &lt;- optimalCutoff(testData$ABOVE50K, predicted)[1] 
+# percentage mismatch of predicted vs actuals
+misClassError(testData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>## [1] 0.1563</code></pre>
+</div>
+<div id="roc-curve-and-confusion-matrix" class="section level2">
+<h2>ROC curve and confusion matrix</h2>
+<pre class="r"><code>plotROC(testData$ABOVE50K, predicted)</code></pre>
+<p><img src="/post/2020-12-03-binary-regression-with-cross-validation_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code># Sensitivity: proportion of non-events that are correctly predicted
+# Specificity: proportion of events that are correctly predicted
+
+Concordance(testData$ABOVE50K, predicted)</code></pre>
+<pre><code>## $Concordance
+## [1] 0.8954826
+## 
+## $Discordance
+## [1] 0.1045174
+## 
+## $Tied
+## [1] -2.775558e-17
+## 
+## $Pairs
+## [1] 17449848</code></pre>
+<pre class="r"><code># % of true positive
+sensitivity(testData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>## [1] 0.5065873</code></pre>
+<pre class="r"><code># % of true negative
+specificity(testData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>## [1] 0.9506472</code></pre>
+<pre class="r"><code>confusionMatrix(testData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>##      0    1
+## 0 7050 1161
+## 1  366 1192</code></pre>
+</div>
+<div id="version-2-roc-curve-and-confusion-matrix" class="section level2">
+<h2>version 2: ROC curve and confusion matrix</h2>
+<pre class="r"><code>classDF &lt;- data.frame(response = logitModT$y, predicted = round(fitted(logitModT),0))
+xtabs(~ predicted + response, data = classDF)</code></pre>
+<pre><code>##          response
+## predicted     0     1
+##         0 16088  2308
+##         1  1216  3180</code></pre>
+<pre class="r"><code>ClassTab &lt;- xtabs(~ predicted + response, data = classDF)
+(ClassTab[1,1] + ClassTab[2,2] ) / sum(ClassTab)                                                             </code></pre>
+<pre><code>## [1] 0.8453843</code></pre>
+<pre class="r"><code>predpr &lt;- predict(logitModT,type=c(&quot;response&quot;))
+library(pROC)</code></pre>
+<pre><code>## Warning: le package &#39;pROC&#39; a été compilé avec la version R 3.6.3</code></pre>
+<pre><code>## Type &#39;citation(&quot;pROC&quot;)&#39; for a citation.</code></pre>
+<pre><code>## 
+## Attachement du package : &#39;pROC&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     cov, smooth, var</code></pre>
+<pre class="r"><code>roccurve &lt;- roc(trainingData$ABOVE50K ~ predpr)</code></pre>
+<pre><code>## Setting levels: control = 0, case = 1</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre class="r"><code>plot(roccurve)</code></pre>
+<p><img src="/post/2020-12-03-binary-regression-with-cross-validation_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>auc(roccurve)</code></pre>
+<pre><code>## Area under the curve: 0.8959</code></pre>
+</div>
+<div id="comparison-with-the-original-data-estimation" class="section level2">
+<h2>Comparison with the Original data estimation</h2>
+<pre class="r"><code>predicted &lt;- plogis(predict(logitMod, inputData))  # predicted scores
+optCutOff &lt;- optimalCutoff(inputData$ABOVE50K, predicted)[1] 
+# percentage mismatch of predicted vs actuals
+misClassError(inputData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>## [1] 0.1547</code></pre>
+<pre class="r"><code>plotROC(inputData$ABOVE50K, predicted)</code></pre>
+<p><img src="/post/2020-12-03-binary-regression-with-cross-validation_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>Concordance(inputData$ABOVE50K, predicted)</code></pre>
+<pre><code>## $Concordance
+## [1] 0.8958094
+## 
+## $Discordance
+## [1] 0.1041906
+## 
+## $Tied
+## [1] 0
+## 
+## $Pairs
+## [1] 193829520</code></pre>
+<pre class="r"><code># % of true positive
+sensitivity(inputData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>## [1] 0.5689325</code></pre>
+<pre class="r"><code># % of true negative
+specificity(inputData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>## [1] 0.9329288</code></pre>
+<pre class="r"><code>confusionMatrix(inputData$ABOVE50K, predicted, threshold = optCutOff)</code></pre>
+<pre><code>##       0    1
+## 0 23062 3380
+## 1  1658 4461</code></pre>
+<p>Results appear to be equivalent using cross validation or not.</p>
+<p>Of course it could be lucky situation. We should iterate the cross valiadtion many times and check stability of the results with the random sampling of the training and test samples…</p>
+</div>
+</div>

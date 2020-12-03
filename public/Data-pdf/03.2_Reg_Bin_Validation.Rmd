@@ -1,0 +1,279 @@
+---
+title: "Binary Logistic and validation"
+author: "I Joly"
+date: "23/11/2020"
+output: html_document
+header-includes:
+  \renewcommand{\contentsname}{Table of Content}
+toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+
+Lets try and predict if an individual will earn more than $50K (ABOVE50K) using logistic regression based on demographic variables available in the adult data. 
+
+In this process, we will:
+
+**Part I**   
+
++ Import the data
++ Estimate binary regression (logit and probit) and check some diagnostics
++ Build logit models and predict on test data
++ Do model diagnostics
+
+**Part II** 
+
++ Create training and test samples
++ Compare the cross-validation results with the regression only results
+
+## Load the data
+
+```{r}
+inputData <- read.csv("adult.csv")
+head(inputData)
+```
+
+## Some summary stat
+
+```{r}
+kable(table(inputData$ABOVE50K)/length(inputData$ABOVE50K), 
+      caption = "Count table" ,  digits = 3,
+      col.names = c("ABOVE50K", "Freq"), align = "cc"
+      )
+
+kable( list(
+  table(inputData$RELATIONSHIP)/length(inputData$RELATIONSHIP),   
+  table(inputData$OCCUPATION)/length(inputData$OCCUPATION)    ),
+      caption = "Count table of categorical explanatory variables" ,  digits = 3 
+  
+)
+```
+
+# Part I
+## Estimate P(Above50K = 1) as function of `RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + EDUCATIONNUM`
+
+```{r}
+logitMod <- glm(ABOVE50K ~ RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + EDUCATIONNUM, data=inputData, family=binomial(link="logit"))
+
+summary(logitMod)
+```
+
+We see significant coefficients We can interpret their signs, but not their values.
+
+For categorical variables, we see all levels but one. R creates binary variable for each level of the factor variables. One of these variables have to be excluded from the model (the model could not be estimated otherwise).
+
+The excluded level is the first level by alphabetical order, by default. This level is used as the reference level for interpretation of the other levels.
+
+Hence, for RELATIONSHIP, the reference level is `husband`. All negative (resp. positive) coefficients indicate a decrease (resp. increase) in the probability of event, relatively to the probability of the `husband` level.
+
+The same idea for OCCUPATION, with a reference labeled `?` let say "undetermined". A non significant coefficient, as  `Armed-Forces` indicates that the level has no significant difference in probability of event compared to the probability of the reference level.
+
+Based on this result, we could think about gathering all non significantly different levels in a group level.
+
+
+### Quality of fit
+
+We can perform an equivalent test of the Fischer test in OLS regression, testing for global significance of the model.
+
+$H_0:$ all $\beta$ are null except the intercept
+
+vs.
+
+$H_1$: at least one variable has significant effect
+
+for such test, we can use `anova()` function, which compare the likelihood of the null model to the unrestricted model:
+
+```{r}
+# test for the full model against the 0-model
+glm0 <- glm(ABOVE50K ~ 1 , data=inputData, family=binomial(link="logit"))
+anova(glm0, logitMod, test="Chisq")
+```
+
+As expected, the p-value is small, $H_0$ is rejected. This is in line with the p-values from the significance test per variable (several coefficients are highly significant in the results table)
+
+
+
+### Coefficients inference
+
+We can build confidence interval of the estimated coefficients and the odds ratios.
+We observe narrow interval, indicating good precision in estimate (low standard errors).
+Of course zero is not in CI for significant coefficients
+
+Interpretations of OR are relative to the reference level for categorical variables.
+
+
+```{r warning=FALSE}
+# IC
+confint(logitMod)
+
+# Odd Ratio interpretation
+exp(logitMod$coefficients)
+```
+
+### Constraints test between coefficients
+
+Wald test can be used 
+
++ to test significant impact of `farm-fishing` level of OCCUPATION: $H_0$ : $\beta_{\text{farm-fishing}} = 0$
++ to test equal impact of two levels of RELATIONSHIP: $H_0$ : $\beta_{\text{Not-in-family}} = \beta_{\text{Other-relative}}$
+which can be written:  $\beta_{\text{Not-in-family}} - \beta_{\text{Other-relative}} = 0$
+
+```{r}
+# Wald.test: Occupation=farm-fishing
+library(aod)
+wald.test(b=coef(logitMod), Sigma=vcov(logitMod), Terms=13)
+# Wald Test: Rel:Not-in-family = Rel: Other-relative
+restr <- rbind(c(0, -1, 1, 0,0,0, rep(0,17)))
+wald.test(b = coef(logitMod), Sigma = vcov(logitMod), L = restr)
+```
+First assumption is not reject (accordingly to the p-value of this test and the one of the coefficient).
+
+Second assumption is rejected with risk 10%
+
+
+### Multicolinearity diagnostic
+
+Multicolinearity can be evaluated with VIF (Variance Inflation Factor). GReater than 10, VIF would indicate excessive multicolinearity
+
+
+```{r}
+# VIF diagnostic
+library(car)
+vif(logitMod)
+```
+
+
+# Part I
+Analyse prediction capacity with or without Cross validation
+
+
+## Create Training Data and Test Data
+
+To preserve proportions of success and failure, we split the original data and pick 70% in each subsets.
+
+```{r}
+input_ones <- inputData[which(inputData$ABOVE50K == 1), ]  # all 1's
+input_zeros <- inputData[which(inputData$ABOVE50K == 0), ]  # all 0's
+set.seed(101)  # for repeatability of samples
+# we pick row numbers 
+input_ones_training_rows <- sample(1:nrow(input_ones), 0.7*nrow(input_ones))  # 1's for training
+input_zeros_training_rows <- sample(1:nrow(input_zeros), 0.7*nrow(input_zeros))  # 0's for training. Pick as many 0's as 1's
+# we select data based on picked row numbers
+training_ones <- input_ones[input_ones_training_rows, ]  
+training_zeros <- input_zeros[input_zeros_training_rows, ]
+trainingData <- rbind(training_ones, training_zeros)  # row bind the 1's and 0's 
+# Create Test Data
+test_ones <- input_ones[-input_ones_training_rows, ]
+test_zeros <- input_zeros[-input_zeros_training_rows, ]
+testData <- rbind(test_ones, test_zeros)  # row bind the 1's and 0's 
+```
+
+## Estimate and Predict
+
+```{r}
+kable(list(
+      prop.table(table(inputData$ABOVE50K)), 
+      prop.table(table(trainingData$ABOVE50K)), 
+      prop.table(table(testData$ABOVE50K))
+      ),
+      caption = "Proportions in Original Data" ,  digits = 3,
+      col.names = c("ABOVE50K", "Freq"), align = "cc"
+      )
+```
+
+Proportions are respected
+
+### Estimation on training dataset
+
+```{r}
+logitModT <- glm(ABOVE50K ~ RELATIONSHIP + AGE + CAPITALGAIN + OCCUPATION + EDUCATIONNUM, data=trainingData, family=binomial(link="logit"))
+
+summary(logitModT)
+```
+
+We get almost the same results as on original data.
+
+### Prediction on the test dataset
+
+We predict probabilities of success for the test dataset.
+
+```{r}
+# two equivalent functions
+predicted <- plogis(predict(logitModT, testData))  # predicted scores
+# or
+predicted <- predict(logitModT, testData, type="response")  # predicted scores
+```
+
+
+## Evaluation of prediction
+
+```{r}
+# Classification Diagnostic
+#install.packages("InformationValue")
+library(InformationValue)
+# optimal cut-off proba that minimizes the misclassification error for the above model
+optCutOff <- optimalCutoff(testData$ABOVE50K, predicted)[1] 
+# percentage mismatch of predicted vs actuals
+misClassError(testData$ABOVE50K, predicted, threshold = optCutOff)
+
+```
+
+## ROC curve and confusion matrix
+
+```{r}
+plotROC(testData$ABOVE50K, predicted)
+# Sensitivity: proportion of non-events that are correctly predicted
+# Specificity: proportion of events that are correctly predicted
+
+Concordance(testData$ABOVE50K, predicted)
+# % of true positive
+sensitivity(testData$ABOVE50K, predicted, threshold = optCutOff)
+# % of true negative
+specificity(testData$ABOVE50K, predicted, threshold = optCutOff)
+
+confusionMatrix(testData$ABOVE50K, predicted, threshold = optCutOff)
+```
+
+## version 2: ROC curve and confusion matrix
+
+
+
+```{r}
+classDF <- data.frame(response = logitModT$y, predicted = round(fitted(logitModT),0))
+xtabs(~ predicted + response, data = classDF)
+                                                             
+ClassTab <- xtabs(~ predicted + response, data = classDF)
+(ClassTab[1,1] + ClassTab[2,2] ) / sum(ClassTab)                                                             
+                                                             
+predpr <- predict(logitModT,type=c("response"))
+library(pROC)
+roccurve <- roc(trainingData$ABOVE50K ~ predpr)
+plot(roccurve)
+auc(roccurve)
+
+```
+## Comparison with the Original data estimation
+
+
+```{r}
+predicted <- plogis(predict(logitMod, inputData))  # predicted scores
+optCutOff <- optimalCutoff(inputData$ABOVE50K, predicted)[1] 
+# percentage mismatch of predicted vs actuals
+misClassError(inputData$ABOVE50K, predicted, threshold = optCutOff)
+plotROC(inputData$ABOVE50K, predicted)
+Concordance(inputData$ABOVE50K, predicted)
+# % of true positive
+sensitivity(inputData$ABOVE50K, predicted, threshold = optCutOff)
+# % of true negative
+specificity(inputData$ABOVE50K, predicted, threshold = optCutOff)
+
+confusionMatrix(inputData$ABOVE50K, predicted, threshold = optCutOff)
+```
+
+Results appear to be equivalent using cross validation or not. 
+
+Of course it could be lucky situation. We should iterate the cross valiadtion many times and check stability of the results with the random sampling of the training and test samples...
