@@ -12,6 +12,9 @@ authorbox: false
 
 This is the website of the Lesson **Discret Choice Modelling** taught at Grenoble UGA.
 
+## Eighth Lesson - 07/12/2020 - 9:00 - 12:00
+
+Material for the [Eighth Lesson](../post/2020-11-30-eighth-lesson) 
 
 ## Seventh Lesson - 30/11/2020 - 9:00 - 12:00
 
